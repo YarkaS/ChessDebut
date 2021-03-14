@@ -1,7 +1,7 @@
 # ChessDebut
 Chess project 
 
-A web app to teach the users about the major chess openigns <br />
+A web app to teach the users about the major chess openings <br />
 
 # Our Web App
 http://chessdebuts.herokuapp.com/
