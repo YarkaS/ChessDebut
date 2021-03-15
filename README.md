@@ -8,6 +8,6 @@ http://chessdebuts.herokuapp.com/
 
  # Team Members <br />
 My name is Yaroslava, I am a Front-End web developer in this team <br />
-My name is Andrew, I am a back-end developer in this team
+My name is Andrew, I am a back-end developer in this team </br>
 My name is Kanak. I am a front-end developer in this team
 
