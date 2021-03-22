@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const db = require('../Router/database');
 
-const nvop = db.define('nvopenings', {
+const nvop = db.define('chess openings', {
 
     name:{
         type: Sequelize.STRING,
