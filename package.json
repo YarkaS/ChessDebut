@@ -1,26 +1,11 @@
 {
-
-  "name": "chessdebut",
+  "name": "ChessDebut",
   "version": "1.0.0",
-  "description": "chess quiz",
-  "main": "app.js",
+  "description": "Chess project",
+  "main": "index.js",
   "scripts": {
-    "test": "start",
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jesse Huang -BE",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mysql2": "^2.2.5",
-    "node-fetch": "^2.6.1",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.5.0"
-  },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jayjayh/ChessDebut.git"
@@ -34,6 +19,5 @@
   "homepage": "https://github.com/jayjayh/ChessDebut#readme",
   "dependencies": {
     "express": "^4.17.1"
-
   }
 }
