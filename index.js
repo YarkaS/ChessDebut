@@ -1,7 +1,9 @@
 const path = require('path');
 const express = require('express');
-const app = require("express")();
+
 const PORT = process.env.PORT || 3001;
+
+const app = express();
 
 // for the Node to use the files of React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
