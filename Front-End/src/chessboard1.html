@@ -28,6 +28,7 @@
 	var play = [];
 	var played = [];
 	var answerchoice = [];
+	var ww,bw,dr = "";
 	const answerButtonsElement = document.getElementById('answer-buttons');
 	var answer = "";
 	var movesplayed = "";
@@ -37,7 +38,7 @@
 	var options = {
 		width: 300,
 		animated: true,
-		animationSpeed: 2,
+		animationSpeed: 1,
 		clickable: false,
 		draggable: false
 	};
@@ -46,47 +47,33 @@
 	var replayButton = document.getElementById("replay");
 	replayButton.addEventListener("click",async function(){
 	played = [];
-	insert2(movesplayed);
+	insert(movesplayed,played);
 	reset2();
-	await sleep(2000);
-	continues2();
+	await sleep(1500);
+	continues(played);
 	
 	});
 	async function reset2(){
 		abChess.reset();
 		abChess.setFEN();
 	}
-	async function continues(){
-		for(var i = 0; i< play.length/2;i++)
+	async function continues(arr){
+		for(var i = 0; i< arr.length/2;i++)
 		{
-			abChess.play(play[0+i*2], play[1+i*2]);
-			await sleep(2000);
+			abChess.play(arr[0+i*2], arr[1+i*2]);
+			await sleep(1500);
 		}
 	}
-	async function continues2(){
-		for(var i = 0; i< played.length/2;i++)
-		{
-			abChess.play(played[0+i*2], played[1+i*2]);
-			await sleep(2000);
+	function insert(word,arr){
+		if(hasNum.test(word)){
+			var store = word.trim();
+			while(store.length>2)
+			{
+				arr.push(store.substring(0,2));
+				store = store.substring(2).trim();
+			}
+			arr.push(store.trim());
 		}
-	}
-	function insert(word){
-		var store = word.trim();
-		while(store.length>2)
-		{
-			play.push(store.substring(0,2));
-			store = store.substring(2).trim();
-		}
-		play.push(store.trim());
-	}
-	function insert2(word){
-		var store = word.trim();
-		while(store.length>2)
-		{
-			played.push(store.substring(0,2));
-			store = store.substring(2).trim();
-		}
-		played.push(store.trim());
 	}
 	function sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
@@ -100,10 +87,13 @@
 				movesplayed = data.movesplayed;
 			else
 				document.getElementById('replay').style.visibility = 'hidden';
-			if(data.answer != "" && hasNum.test(data.answer)){
+			if(data.answer != ""){
 				answer = data.answer;
 			}
 			formatwrongans(data.wrongans);
+			ww = data.ww;
+			bw = data.bw;
+			dw = data.dr;
 		})
 		.catch(error => {
 		console.error('request failed', error);
@@ -114,6 +104,7 @@
 		while (answerButtonsElement.firstChild) {
 			answerButtonsElement.removeChild(answerButtonsElement.firstChild)
 		  }
+		  shuffle(answerchoice);
 		for(var i = 0 ; i < 4; i++)
 		{
 			const button = document.createElement('button');
@@ -124,6 +115,23 @@
 			answerButtonsElement.appendChild(button);
 		}
 	}
+	function shuffle(array) {
+		  var currentIndex = array.length, temporaryValue, randomIndex;
+
+		  // While there remain elements to shuffle...
+		  while (0 !== currentIndex) {
+
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
+
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		  }
+		return array;
+	}
 	function selectAnswer(e) {
 		const selectedButton = e.target;
 		const correct = selectedButton.lastChild.data;
@@ -132,10 +140,9 @@
 	function setStatusClass(element, correct) {
 		  if (correct == answer) {
 			play = [];
-			insert(answer);
-			console.log(play);
-			continues();
-			
+			insert(answer,play);
+			continues(play);
+			alert("white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
 		  } else {
 			alert("wrong answer");
 		  }
