@@ -11,12 +11,14 @@ db.authenticate()
     .then(() => console.log("Database connected."))
     .catch(err => console.log(err));
 
-router.get('/', (req, res) => {
+//router.get('/', (req, res) => {
 
     //console.log("default route");
-    res.status(200).send("This is route /");
+  //  res.status(200).send("This is route /");
 
-});
+//})
+
+//});
 
 router.get('/getOP', async (req, res) => {
 

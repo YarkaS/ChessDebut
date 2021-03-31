@@ -5,6 +5,17 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+const cors = require('cors');
+
+const Router = require('./Back-End/Router/API.js');
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cors());
+app.use(Router);
+
 // for the Node to use the files of React app
 //app.use(express.static(path.resolve(__dirname, '../client/build')));
 //express-static middleware
