@@ -2,7 +2,7 @@
   "name": "ChessDebut",
   "version": "1.0.0",
   "description": "Chess project",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://localhost:3000",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
