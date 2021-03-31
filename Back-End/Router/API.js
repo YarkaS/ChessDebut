@@ -23,7 +23,7 @@ router.get('/getOP', async (req, res) => {
     // opnv.findOne({order:sequelize.random()})
     //     .then(encounter => {res.status(200).json({opening:encounter.name,move:encounter.moves})})
     //     .catch(err => console.log(err));
-    let rand = 2//Math.floor(Math.random()*4);
+    let rand = Math.floor(Math.random()*4);
     console.log(rand);
     await opnv.findAll({order:sequelize.random(),limit:4})
         .then(async d =>{
@@ -40,7 +40,7 @@ router.get('/getOP', async (req, res) => {
                     res.status(200).json({question:`Given that they are playing ${d[0].name}. What is the correct next move?`,movesplayed:d[0].moves.substring(0,d[0].moves.length-4),answer:move[move.length-1],wrongans:"",ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 2:
-                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:e[0].moves.split(' ')[0] + "|" + d[1].moves.split(' ')[0] + "|" + d[2].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:d[0].moves.split(' ')[0] + "|" + d[1].moves.split(' ')[0] + "|" + d[2].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 3:
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
