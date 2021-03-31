@@ -5,6 +5,7 @@ const router = express.Router();
 const db = require('./database');
 const opnv = require('../Models/nvop');
 const { sequelize } = require('../Models/nvop');
+const { Sequelize } = require('./database');
 
 db.authenticate()
     .then(() => console.log("Database connected."))
@@ -22,27 +23,27 @@ router.get('/getOP', async (req, res) => {
     // opnv.findOne({order:sequelize.random()})
     //     .then(encounter => {res.status(200).json({opening:encounter.name,move:encounter.moves})})
     //     .catch(err => console.log(err));
-    let rand = Math.floor(Math.random()*4);
+    let rand = 2//Math.floor(Math.random()*4);
     console.log(rand);
-    await opnv.findOne({order:sequelize.random()})
+    await opnv.findAll({order:sequelize.random(),limit:4})
         .then(async d =>{
-            let stats = await fetch(`https://explorer.lichess.ovh/lichess?variant=standard&speeds[]=blitz&speeds[]=rapid&speeds[]=classical&ratings[]=2200&ratings[]=2500&fen=${d.fen}`)
+            let stats = await fetch(`https://explorer.lichess.ovh/lichess?variant=standard&speeds[]=blitz&speeds[]=rapid&speeds[]=classical&ratings[]=2200&ratings[]=2500&fen=${d[0].fen}`)
                   .then(res => res.json());
             if(d == null)
                 res.sendStatus(404);
             switch(rand){
                 case 0:
-                    res.status(200).json({question:`Given the ${d.name}. What is the Correct move order`,movesplayed:"",answer:d.moves,ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:`Given the ${d[0].name}. What is the Correct move order`,movesplayed:"",answer:d[0].moves,wrongans:d[1].moves + "|" + d[2].moves + "|" + d[3].moves,ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 1:
-                    let move = d.moves.split(' ');
-                    res.status(200).json({question:`Given that they are playing ${d.name}. What is the correct next move?`,movesplayed:d.moves.substring(0,d.moves.length-4),answer:move[move.length-1],ww:stats.white,bw:stats.black,dr:stats.draws});
+                    let move = d[0].moves.split(' ');
+                    res.status(200).json({question:`Given that they are playing ${d[0].name}. What is the correct next move?`,movesplayed:d[0].moves.substring(0,d[0].moves.length-4),answer:move[move.length-1],wrongans:"",ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 2:
-                    res.status(200).json({question:`You want to play the ${d.name}. What is the first move?`,movesplayed:"",answer:d.moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:e[0].moves.split(' ')[0] + "|" + d[1].moves.split(' ')[0] + "|" + d[2].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 3:
-                    res.status(200).json({question:`What is this opening?`,movesplayed:d.moves,answer:d.name,ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
             }
             }
         )
@@ -62,6 +63,39 @@ router.get('/stats/',(req,res) => {
             console.log("Got data");
             res.status(200).send(txt);
 
+        })
+        .catch(err => res.sendStatus(400));
+
+});
+
+router.get('/getgame', (req,res) => {
+
+    fetch('https://lichess.org/game/export/q7ZvsdUF')
+        .then(res => res.text())
+        .then(body => {console.log(body);res.status(200).send(body);})
+        .catch(err => res.sendStatus(400));
+
+});
+
+router.get('/test', async (req,res) => {
+
+    await opnv.findAll(
+        {
+            where:{
+                [Sequelize.Op.not]:
+                {
+                    moves: {
+                    [Sequelize.Op.like]: 'd2d4'
+                    }
+                }
+            },
+            Order:sequelize.random(),
+            limit:3
+        }
+        )
+        .then(async e => {
+            console.log(e);
+            res.status(200).send(e);
         })
         .catch(err => res.sendStatus(400));
 
