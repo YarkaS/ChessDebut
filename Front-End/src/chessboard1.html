@@ -1,0 +1,154 @@
+<!Doctype html>
+<html lang ="en">
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
+	<link rel="stylesheet" href="test.css">
+</head>
+<body>
+<div>
+	<button id ="replay" class = "commands">Replay</button>
+</div>
+<div id="chessboard"></div>
+<div class="container">
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+    </div>
+</div>
+<script src='AbChess/AbChess-0.3.1.js'></script>
+<script>
+	api();
+	var play = [];
+	var played = [];
+	var answerchoice = [];
+	const answerButtonsElement = document.getElementById('answer-buttons');
+	var answer = "";
+	var movesplayed = "";
+	var hasNum = /\d/;
+	var count = 0;
+	var abChess = {};
+	var options = {
+		width: 300,
+		animated: true,
+		animationSpeed: 2,
+		clickable: false,
+		draggable: false
+	};
+	abChess = new AbChess("chessboard",options);
+	abChess.setFEN();
+	var replayButton = document.getElementById("replay");
+	replayButton.addEventListener("click",async function(){
+	played = [];
+	insert2(movesplayed);
+	reset2();
+	await sleep(2000);
+	continues2();
+	
+	});
+	async function reset2(){
+		abChess.reset();
+		abChess.setFEN();
+	}
+	async function continues(){
+		for(var i = 0; i< play.length/2;i++)
+		{
+			abChess.play(play[0+i*2], play[1+i*2]);
+			await sleep(2000);
+		}
+	}
+	async function continues2(){
+		for(var i = 0; i< played.length/2;i++)
+		{
+			abChess.play(played[0+i*2], played[1+i*2]);
+			await sleep(2000);
+		}
+	}
+	function insert(word){
+		var store = word.trim();
+		while(store.length>2)
+		{
+			play.push(store.substring(0,2));
+			store = store.substring(2).trim();
+		}
+		play.push(store.trim());
+	}
+	function insert2(word){
+		var store = word.trim();
+		while(store.length>2)
+		{
+			played.push(store.substring(0,2));
+			store = store.substring(2).trim();
+		}
+		played.push(store.trim());
+	}
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+	async function api(){
+		await fetch('https://chessdebut.herokuapp.com/getop').then(response=>{
+			return response.json();
+		}).then(data=>{
+			document.getElementById("question").innerHTML = data.question;
+			if(data.movesplayed != "")
+				movesplayed = data.movesplayed;
+			else
+				document.getElementById('replay').style.visibility = 'hidden';
+			if(data.answer != "" && hasNum.test(data.answer)){
+				answer = data.answer;
+			}
+			formatwrongans(data.wrongans);
+		})
+		.catch(error => {
+		console.error('request failed', error);
+		});
+		showQuestion();
+	}
+	function showQuestion() {
+		while (answerButtonsElement.firstChild) {
+			answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+		  }
+		for(var i = 0 ; i < 4; i++)
+		{
+			const button = document.createElement('button');
+			button.innerText = answerchoice[i];
+			console.log(answerchoice);
+			button.classList.add('btn');
+			button.addEventListener('click', selectAnswer);
+			answerButtonsElement.appendChild(button);
+		}
+	}
+	function selectAnswer(e) {
+		const selectedButton = e.target;
+		const correct = selectedButton.lastChild.data;
+		 setStatusClass(selectedButton, correct)
+	}
+	function setStatusClass(element, correct) {
+		  if (correct == answer) {
+			play = [];
+			insert(answer);
+			console.log(play);
+			continues();
+			
+		  } else {
+			alert("wrong answer");
+		  }
+	}
+	function formatwrongans(wrong){
+		var store = wrong;
+		for(var i = 0; i <2; i++){
+			answerchoice.push(store.substring(0,store.indexOf("|")));
+				store = store.substring(store.indexOf("|")+1);
+		}
+		answerchoice.push(store);
+		answerchoice.push(answer);
+	}
+</script>
+</body>
+</html>
