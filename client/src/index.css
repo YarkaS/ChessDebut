@@ -36,3 +36,10 @@ ul.header li a {
 .active {
   background-color: #0099FF;
 }
+.quiz{
+  border: 1px solid beige;
+  width: 150px;
+}
+.quizButtons{
+  padding: 5px;
+}
