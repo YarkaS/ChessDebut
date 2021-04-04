@@ -1,57 +1,45 @@
 var quizQuestions = [
   {
-      question: "Given the Ruy Lopez. What is the Correct move order",
+      question: "Given the Polish Opening, what is the correct move order?",
       answers: [
           {
               type: "correct",
-              content: "e2e4 e7e5 g1f3 b8c6 f1b5"
+              content: "b2b4"
           },
           {
               type: "incorrect",
-              content: "g1f3 g8f6 g2g3 d7d5"
-          },
+              content: "d2d4 f7f5"
+          }
+      ]
+  },
+  {
+      question: "You want to play the Nimzovich-Larsen Attack. What are the first moves?",
+      answers: [
           {
-              type: "wrong",
+              type: "correct",
               content: "b2b3"
-          }
-      ]
-  },
-  {
-      question: "You want to play the Benoni Defense. What are the first moves?",
-      answers: [
-          {
-              type: "correct",
-              content: "d2d4"
           },
           {
               type: "incorrect",
               content: "d2d4"
-          },
-          {
-              type: "wrong",
-              content: "e2e4"
           }
       ]
   },
   {
-      question: "What is this opening? e2e4 e7e5 g1f3 b8c6 f1b5",
+      question: "What is this opening: e2e4 e7e5 g1f3 b8c6 b1c3 g8f6?",
       answers: [
           {
               type: "correct",
-              content: "Ruy Lopez"
+              content: "Four Knights"
           },
           {
               type: "incorrect",
-              content: "Caro-Kann Defense"
-          },
-          {
-              type: "wrong",
-              content: "Sicilian defense "
+              content: "Queen's Gambit"
           }
       ]
   },
   {
-      question: "Given the Catalan Opening. What is the Correct move order",
+      question: "Given the Catalan Opening, what is the correct move order?",
       answers: [
           {
               type: "correct",
@@ -60,27 +48,19 @@ var quizQuestions = [
           {
               type: "incorrect",
               content: "e2e4 e7e5 g1f3 b8c6 "
-          },
-          {
-              type: "wrong",
-              content: "g1f3 g8f6 g2g3 d7d5"
           }
       ]
   },
   {
-      question: "You want to play the Amar Opening. What are the first moves?",
+      question: "You want to play the Bird's Opening. What are the first moves?",
       answers: [
           {
               type: "correct",
-              content: "g1h3"
+              content: "f2f4"
           },
           {
               type: "incorrect",
-              content: "g1h3"
-          },
-          {
-              type: "wrong",
-              content: "b2b3"
+              content: "e2e4"
           }
       ]
   }

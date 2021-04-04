@@ -5,6 +5,7 @@ import Result from './Result';
 import logo from './svg/logo.svg';
 import './index.css';
 
+
 class Play extends Component {
   constructor(props) {
     super(props);
@@ -125,6 +126,7 @@ class Play extends Component {
         <div className = "Play-header">
          <img src={logo} className="App-logo" alt="logo" />
           <h2>Take a quiz!</h2>
+          <h2>   <a target="_blank" href={process.env.PUBLIC_URL + "./chess_board_quiz/chessboard1.html"} > Take me to the quiz with chessboard</a> </h2>
           
         </div>
         
