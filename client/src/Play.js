@@ -10,7 +10,7 @@ class Play extends Component {
           <li>Easy</li>
           <li>Medium</li>
           <li>Hard</li>
-
+     
         </ol>
       </div>
     );
