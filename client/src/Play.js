@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import quizQuestions from './fake_api/QuizQuestions';
 import Quiz from './Quiz'; 
 import Result from './Result';
-import logo from './svg/logo.svg';
+
 import './index.css';
 
 
@@ -124,9 +124,9 @@ class Play extends Component {
     return (
       <div className = "Play">
         <div className = "Play-header">
-         <img src={logo} className="App-logo" alt="logo" />
-          <h2>Take a quiz!</h2>
-          <h2>   <a target="_blank" href={process.env.PUBLIC_URL + "./chess_board_quiz/chessboard1.html"} > Take me to the quiz with chessboard</a> </h2>
+         
+          <h3>Practice quiz!</h3>
+          <h2>   <a target="_blank" href={process.env.PUBLIC_URL + "./chess_board_quiz/chessboard1.html"} > Take me to the test with chessboard</a> </h2>
           
         </div>
         
