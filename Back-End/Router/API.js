@@ -1,5 +1,6 @@
 const express = require('express');
 const fetch = require('node-fetch');
+const cf = require('./functions');
 const bodyparser = require('body-parser');
 const router = express.Router();
 const db = require('./database');
@@ -11,14 +12,12 @@ db.authenticate()
     .then(() => console.log("Database connected."))
     .catch(err => console.log(err));
 
-//router.get('/', (req, res) => {
+router.get('/', (req, res) => {
 
     //console.log("default route");
-  //  res.status(200).send("This is route /");
+    res.status(200).send("This is route /");
 
-//})
-
-//});
+});
 
 router.get('/getOP', async (req, res) => {
 
@@ -42,7 +41,17 @@ router.get('/getOP', async (req, res) => {
                     res.status(200).json({question:`Given that they are playing ${d[0].name}. What is the correct next move?`,movesplayed:d[0].moves.substring(0,d[0].moves.length-4),answer:move[move.length-1],wrongans:"",ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 2:
-                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:d[0].moves.split(' ')[0] + "|" + d[1].moves.split(' ')[0] + "|" + d[2].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws});
+                    let arr = new Array(3);
+                    let count = 0;
+                    while(count < arr.length){
+                        var t = cf.getopeningmovewhite();
+                        while(arr.includes(t) || t == d[0].moves.split(' ')[0]){
+                            t = cf.getopeningmovewhite();
+                        }
+                        arr[count] = t;
+                        count++;
+                    }
+                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 3:
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
@@ -75,30 +84,6 @@ router.get('/getgame', (req,res) => {
     fetch('https://lichess.org/game/export/q7ZvsdUF')
         .then(res => res.text())
         .then(body => {console.log(body);res.status(200).send(body);})
-        .catch(err => res.sendStatus(400));
-
-});
-
-router.get('/test', async (req,res) => {
-
-    await opnv.findAll(
-        {
-            where:{
-                [Sequelize.Op.not]:
-                {
-                    moves: {
-                    [Sequelize.Op.like]: 'd2d4'
-                    }
-                }
-            },
-            Order:sequelize.random(),
-            limit:3
-        }
-        )
-        .then(async e => {
-            console.log(e);
-            res.status(200).send(e);
-        })
         .catch(err => res.sendStatus(400));
 
 });
