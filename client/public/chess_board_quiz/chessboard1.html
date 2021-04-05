@@ -8,6 +8,7 @@
 </head>
 <body>
 <div>
+	<button id ="nextQuestion" class = "commands">Next</button>
 	<button id ="replay" class = "commands">Replay</button>
 </div>
 <div id="chessboard"></div>
@@ -53,6 +54,11 @@
 	continues(played);
 	
 	});
+	var next = document.getElementById("nextQuestion");
+	next.addEventListener("click",async function(){
+		nextQues();
+		api();
+	});
 	async function reset2(){
 		abChess.reset();
 		abChess.setFEN();
@@ -82,6 +88,7 @@
 		await fetch('https://chessdebuts.herokuapp.com/getop').then(response=>{
 			return response.json();
 		}).then(data=>{
+			document.getElementById('replay').style.visibility = 'visible';
 			document.getElementById("question").innerHTML = data.question;
 			if(data.movesplayed != "")
 				movesplayed = data.movesplayed;
@@ -94,6 +101,8 @@
 			ww = data.ww;
 			bw = data.bw;
 			dw = data.dr;
+			insert(movesplayed,played);
+			insert(answer,play);
 		})
 		.catch(error => {
 		console.error('request failed', error);
@@ -155,6 +164,12 @@
 		}
 		answerchoice.push(store);
 		answerchoice.push(answer);
+	}
+	function nextQues(){
+		reset2();
+		play = [];
+		played = [];
+		answerchoice = [];
 	}
 </script>
 </body>
