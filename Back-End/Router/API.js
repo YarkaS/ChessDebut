@@ -24,7 +24,7 @@ router.get('/getOP', async (req, res) => {
     // opnv.findOne({order:sequelize.random()})
     //     .then(encounter => {res.status(200).json({opening:encounter.name,move:encounter.moves})})
     //     .catch(err => console.log(err));
-    let rand = Math.floor(Math.random()*4);
+    let rand = Math.floor(Math.random()*3);
     console.log(rand);
     await opnv.findAll({order:sequelize.random(),limit:4})
         .then(async d =>{
@@ -37,10 +37,6 @@ router.get('/getOP', async (req, res) => {
                     res.status(200).json({question:`Given the ${d[0].name}. What is the Correct move order`,movesplayed:"",answer:d[0].moves,wrongans:d[1].moves + "|" + d[2].moves + "|" + d[3].moves,ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 1:
-                    let move = d[0].moves.split(' ');
-                    res.status(200).json({question:`Given that they are playing ${d[0].name}. What is the correct next move?`,movesplayed:d[0].moves.substring(0,d[0].moves.length-4),answer:move[move.length-1],wrongans:"",ww:stats.white,bw:stats.black,dr:stats.draws});
-                    break;
-                case 2:
                     let arr = new Array(3);
                     let count = 0;
                     while(count < arr.length){
@@ -53,7 +49,7 @@ router.get('/getOP', async (req, res) => {
                     }
                     res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
-                case 3:
+                case 2:
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
             }
             }
