@@ -12,19 +12,12 @@ db.authenticate()
     .then(() => console.log("Database connected."))
     .catch(err => console.log(err));
 
-//router.get('/', (req, res) => {
-
-    //console.log("default route");
-  //  res.status(200).send("This is route /");
-
-//});
-
 router.get('/getOP', async (req, res) => {
 
     // opnv.findOne({order:sequelize.random()})
     //     .then(encounter => {res.status(200).json({opening:encounter.name,move:encounter.moves})})
     //     .catch(err => console.log(err));
-    let rand = Math.floor(Math.random()*3);
+    let rand = Math.floor(Math.random()*4);
     console.log(rand);
     await opnv.findAll({order:sequelize.random(),limit:4})
         .then(async d =>{
@@ -51,9 +44,12 @@ router.get('/getOP', async (req, res) => {
                     break;
                 case 2:
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
-            }
-            }
-        )
+                    break;
+                case 3:
+                    res.status(200).json({question:d[0].description + "\nWhat opening is this description talking about?",movesplayed:"",answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
+                    break;
+                }
+        })
         .catch(err => res.status(400).send(err));
 
 
