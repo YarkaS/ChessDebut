@@ -125,8 +125,7 @@ class Play extends Component {
       <div className = "Play">
         <div className = "Play-header">
          
-          <h3>Practice quiz!</h3>
-          <h2>   <a target="_blank" href={process.env.PUBLIC_URL + "./chess_board_quiz/chessboard1.html"} > Take me to the test with chessboard</a> </h2>
+          
           
         </div>
         
