@@ -46,7 +46,7 @@ router.get('/getOP', async (req, res) => {
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 3:
-                    res.status(200).json({question:d[0].description + "<br>What opening is this description talking about?",movesplayed:"",answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:d[0].description + "What opening is this description talking about?",movesplayed:"",answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 }
         })
