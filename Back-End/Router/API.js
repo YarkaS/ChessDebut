@@ -40,7 +40,7 @@ router.get('/getOP', async (req, res) => {
                         arr[count] = t;
                         count++;
                     }
-                    res.status(200).json({question:`You want to play the ${d[0].name}. What are the first moves?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],ww:stats.white,bw:stats.black,dr:stats.draws});
+                    res.status(200).json({question:`You want to play the ${d[0].name}. What is the first move?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],ww:stats.white,bw:stats.black,dr:stats.draws});
                     break;
                 case 2:
                     res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,ww:stats.white,bw:stats.black,dr:stats.draws});
