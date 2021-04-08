@@ -7,21 +7,31 @@
 	<link rel="stylesheet" href="test.css">
 </head>
 <body>
-<div>
-	<button id ="nextQuestion" class = "commands">Next</button>
-	<button id ="replay" class = "commands">Replay</button>
-</div>
-<div id="chessboard"></div>
-<div class="container">
-    <div id="question-container" class="hide">
-      <div id="question">Question</div>
-      <div id="answer-buttons" class="btn-grid">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-    </div>
+ <div style="background-image: url('./blurchess.jpg');"
+    >
+</script>
+<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
+<div class = "center">
+	<div class = "containercontainer">
+		<div id="chessboard"></div>
+		<div class="container">
+			<div id="question-container">
+			  <div id="question" class="quest">Question</div>
+			  <div class = "replaybtn">
+					<button id ="replay" class = "commands">play it/ replay it</button>
+			  </div>
+			  <div id="answer-buttons" class="btn-grid">
+				<button class="btn">Answer 1</button>
+				<button class="btn">Answer 2</button>
+				<button class="btn">Answer 3</button>
+				<button class="btn">Answer 4</button>
+			  </div>
+			</div>
+		</div>
+		<div class = "bottomright">
+			<button id ="nextQuestion" class = "commands btn">Next</button>
+		</div>
+	</div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script>
@@ -37,9 +47,9 @@
 	var count = 0;
 	var abChess = {};
 	var options = {
-		width: 300,
+		width: 480,
 		animated: true,
-		animationSpeed: 1,
+		animationSpeed: 3,
 		clickable: false,
 		draggable: false
 	};
@@ -50,7 +60,7 @@
 	played = [];
 	insert(movesplayed,played);
 	reset2();
-	await sleep(1500);
+	await sleep(1000);
 	continues(played);
 	
 	});
@@ -67,7 +77,7 @@
 		for(var i = 0; i< arr.length/2;i++)
 		{
 			abChess.play(arr[0+i*2], arr[1+i*2]);
-			await sleep(1500);
+			await sleep(1000);
 		}
 	}
 	function insert(word,arr){
