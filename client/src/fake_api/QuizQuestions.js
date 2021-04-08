@@ -13,7 +13,7 @@ var quizQuestions = [
       ]
   },
   {
-      question: "You want to play the Nimzovich-Larsen Attack. What are the first moves?",
+      question: "You want to play the Nimzovich-Larsen Attack. What is the first move for White?",
       answers: [
           {
               type: "correct",
@@ -52,7 +52,7 @@ var quizQuestions = [
       ]
   },
   {
-      question: "You want to play the Bird's Opening. What are the first moves?",
+      question: "You want to play the Bird's Opening. What is the first move for White?",
       answers: [
           {
               type: "correct",
