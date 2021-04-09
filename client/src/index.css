@@ -130,9 +130,9 @@ ul.header li a {
 
 .radioCustomButton:checked ~ .radioCustomLabel:before {
   content: '';
-  background: #8bc53f url(./svg/icon-check.svg) no-repeat;
+  background: #3498DB url(./svg/icon-check.svg) no-repeat;
   background-size: 20px;
-  border-color: #8bc53f;
+  border-color: #3498DB;
 }
 
 /* Animation */
