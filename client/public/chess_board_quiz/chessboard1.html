@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
 	<link rel="stylesheet" href="test.css">
 </head>
-<body>
- <div style="background-image: url('./blurchess.jpg');"
-    >
-</script>
+<body style="background: url(blurchess.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;">
+<div >
 <a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
 <div class = "center">
 	<div class = "containercontainer">
@@ -33,12 +34,14 @@
 		</div>
 	</div>
 </div>
+</div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script>
 	api();
 	var play = [];
 	var played = [];
 	var answerchoice = [];
+	var check = 0;
 	var ww,bw,dr = "";
 	const answerButtonsElement = document.getElementById('answer-buttons');
 	var answer = "";
@@ -66,8 +69,10 @@
 	});
 	var next = document.getElementById("nextQuestion");
 	next.addEventListener("click",async function(){
-		nextQues();
-		api();
+		if(check == 1){
+			nextQues();
+			api();
+		}
 	});
 	async function reset2(){
 		abChess.reset();
@@ -128,7 +133,6 @@
 		{
 			const button = document.createElement('button');
 			button.innerText = answerchoice[i];
-			console.log(answerchoice);
 			button.classList.add('btn');
 			button.addEventListener('click', selectAnswer);
 			answerButtonsElement.appendChild(button);
@@ -157,13 +161,20 @@
 		 setStatusClass(selectedButton, correct)
 	}
 	function setStatusClass(element, correct) {
-		  if (correct == answer) {
+		  if (correct == answer && check == 0) {
 			play = [];
 			insert(answer,play);
 			continues(play);
-			alert("white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
-		  } else {
+			count++;
+			check = 1;
+			alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
+		  } 
+		  else if(correct == answer){
+			return;
+		  }
+		  else {
 			alert("wrong answer");
+			window.location.href = "https://chessdebuts.herokuapp.com/#";
 		  }
 	}
 	function formatwrongans(wrong){
@@ -180,6 +191,7 @@
 		play = [];
 		played = [];
 		answerchoice = [];
+		check = 0;
 	}
 </script>
 </body>

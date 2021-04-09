@@ -103,7 +103,7 @@
   width: 480px;
   height: 480px;
   max-width: 80%;
-  background-color: rgb(255,245,238);
+  background-color: rgb(135,206,235);
   padding: 10px;
 }
 .btn-grid {
@@ -113,9 +113,10 @@
 }
 
 body {
-  background-color: #E5E4E2;
-  padding: 20px;
-  margin: 0;
+	background-image: url('./blurchess.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 .center {
   display: flex;
@@ -143,7 +144,7 @@ body {
 	display: inline;
 }
 .btn{
-  background-color: #25383C; /* Dark Slate Grey */
+  background-color: #4CAF50; /* Green */
   border: none;
   color: white;
   padding: 5px 32px;
