@@ -6,10 +6,7 @@
     <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
 	<link rel="stylesheet" href="test.css">
 </head>
-<body style="background: url(blurchess.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;">
+<body>
 <div >
 <a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
 <div class = "center">
@@ -173,7 +170,7 @@
 			return;
 		  }
 		  else {
-			alert("wrong answer");
+			alert("wrong answer \n"+ "End Score: "+ count);
 			window.location.href = "https://chessdebuts.herokuapp.com/#";
 		  }
 	}
