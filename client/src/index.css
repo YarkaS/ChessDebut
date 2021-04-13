@@ -52,10 +52,6 @@ ul.header li a {
   border: 1px solid beige;
   width: 150px;
 }
-<<<<<<< HEAD
-.quizButtons{
-  padding: 5px;
-=======
 
 /* Quiz Component */
 .answerOptions {
@@ -161,5 +157,22 @@ ul.header li a {
 .fade-appear.fade-appear-active {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
->>>>>>> 587f36ce860f2329ae34754e6d3e86c01e728f01
 }
+
+img{
+  height: 360px;
+  width: 360px;
+  align-content: center;
+}
+.Col{
+  border-right: 2px solid black;
+}
+.Row{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h1{
+  color:red;
+  align-content: center;
+}
+
