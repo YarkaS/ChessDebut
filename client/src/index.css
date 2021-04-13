@@ -12,6 +12,7 @@
 }
 h1, h2, p, ul {
   font-family: sans-serif;
+  
 
 }
 li {
@@ -37,6 +38,7 @@ ul.header li a {
 .content {
   background-color: #FFF;
   padding: 20px;
+  
 }
 .content h2 {
   padding: 0;
@@ -48,6 +50,7 @@ ul.header li a {
 .active {
   background-color: #2B547E;
 }
+
 .quiz{
   border: 1px solid beige;
   width: 150px;
@@ -58,6 +61,7 @@ ul.header li a {
   margin: 0;
   padding: 0;
   list-style: none;
+  
 }
 
 /* QuestionCount Component */
@@ -76,6 +80,8 @@ ul.header li a {
 /* AnswerOption Component */
 .answerOption {
   border-top: 1px solid #eee;
+  
+  
 
 }
 
@@ -122,9 +128,9 @@ ul.header li a {
 
 .radioCustomButton:checked ~ .radioCustomLabel:before {
   content: '';
-  background: #8bc53f url(./svg/icon-check.svg) no-repeat;
+  background: #3498DB url(./svg/icon-check.svg) no-repeat;
   background-size: 20px;
-  border-color: #8bc53f;
+  border-color: #3498DB;
 }
 
 /* Animation */
