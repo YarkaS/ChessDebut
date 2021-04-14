@@ -17,7 +17,7 @@ class Dictionary extends Component {
         </p>
         <Container fluid>
           <Row className = "Row">
-            <Col className = "Col">
+            <Col className = "cols">
               <h1>Alekhine's Defense</h1>
               <img src={require("./Imgs/Alekhine.jpeg").default} />
             </Col>

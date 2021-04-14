@@ -171,8 +171,7 @@ img{
   padding-top: 10px;
   padding-bottom: 10px;
 }
-h1{
-  color:red;
-  align-content: center;
+cols{
+  justify-content: center;
+  text-align: center;
 }
-
