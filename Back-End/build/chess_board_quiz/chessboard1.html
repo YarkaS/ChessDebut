@@ -7,22 +7,30 @@
 	<link rel="stylesheet" href="test.css">
 </head>
 <body>
-</script>
-<div>
-	<button id ="nextQuestion" class = "commands">Next</button>
-	<button id ="replay" class = "commands">Replay</button>
+<div >
+<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
+<div class = "center">
+	<div class = "containercontainer">
+		<div id="chessboard"></div>
+		<div class="container">
+			<div id="question-container">
+			  <div id="question" class="quest">Question</div>
+			  <div class = "replaybtn">
+					<button id ="replay" class = "commands">play it/ replay it</button>
+			  </div>
+			  <div id="answer-buttons" class="btn-grid">
+				<button class="btn">Answer 1</button>
+				<button class="btn">Answer 2</button>
+				<button class="btn">Answer 3</button>
+				<button class="btn">Answer 4</button>
+			  </div>
+			</div>
+		</div>
+		<div class = "bottomright">
+			<button id ="nextQuestion" class = "commands btn">Next</button>
+		</div>
+	</div>
 </div>
-<div id="chessboard"></div>
-<div class="container">
-    <div id="question-container" class="hide">
-      <div id="question">Question</div>
-      <div id="answer-buttons" class="btn-grid">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-    </div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script>
@@ -30,6 +38,7 @@
 	var play = [];
 	var played = [];
 	var answerchoice = [];
+	var check = 0;
 	var ww,bw,dr = "";
 	const answerButtonsElement = document.getElementById('answer-buttons');
 	var answer = "";
@@ -38,7 +47,7 @@
 	var count = 0;
 	var abChess = {};
 	var options = {
-		width: 300,
+		width: 480,
 		animated: true,
 		animationSpeed: 3,
 		clickable: false,
@@ -51,14 +60,16 @@
 	played = [];
 	insert(movesplayed,played);
 	reset2();
-	await sleep(1500);
+	await sleep(1000);
 	continues(played);
 	
 	});
 	var next = document.getElementById("nextQuestion");
 	next.addEventListener("click",async function(){
-		nextQues();
-		api();
+		if(check == 1){
+			nextQues();
+			api();
+		}
 	});
 	async function reset2(){
 		abChess.reset();
@@ -68,7 +79,7 @@
 		for(var i = 0; i< arr.length/2;i++)
 		{
 			abChess.play(arr[0+i*2], arr[1+i*2]);
-			await sleep(1500);
+			await sleep(1000);
 		}
 	}
 	function insert(word,arr){
@@ -119,7 +130,6 @@
 		{
 			const button = document.createElement('button');
 			button.innerText = answerchoice[i];
-			console.log(answerchoice);
 			button.classList.add('btn');
 			button.addEventListener('click', selectAnswer);
 			answerButtonsElement.appendChild(button);
@@ -148,13 +158,20 @@
 		 setStatusClass(selectedButton, correct)
 	}
 	function setStatusClass(element, correct) {
-		  if (correct == answer) {
+		  if (correct == answer && check == 0) {
 			play = [];
 			insert(answer,play);
 			continues(play);
-			alert("white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
-		  } else {
-			alert("wrong answer");
+			count++;
+			check = 1;
+			alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
+		  } 
+		  else if(correct == answer){
+			return;
+		  }
+		  else {
+			alert("wrong answer \n"+ "End Score: "+ count);
+			window.location.href = "https://chessdebuts.herokuapp.com/#";
 		  }
 	}
 	function formatwrongans(wrong){
@@ -171,8 +188,8 @@
 		play = [];
 		played = [];
 		answerchoice = [];
+		check = 0;
 	}
 </script>
-<a href = "https://chessdebuts.herokuapp.com/#/">Home</a>
 </body>
 </html>
