@@ -59,6 +59,10 @@ ul.header li a {
 .result {
   padding: 1.5rem 2.5rem;
   font-size: 20px;
+
+.quiz{
+  border: 1px solid beige;
+  width: 150px;
 }
 
 /* Quiz Component */

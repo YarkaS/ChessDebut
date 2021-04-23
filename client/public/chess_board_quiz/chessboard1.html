@@ -34,7 +34,6 @@
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script>
-	api();
 	var play = [];
 	var played = [];
 	var answerchoice = [];
@@ -43,6 +42,7 @@
 	const answerButtonsElement = document.getElementById('answer-buttons');
 	var answer = "";
 	var movesplayed = "";
+	var temp = "";
 	var hasNum = /\d/;
 	var count = 0;
 	var abChess = {};
@@ -66,7 +66,7 @@
 	});
 	var next = document.getElementById("nextQuestion");
 	next.addEventListener("click",async function(){
-		if(check == 1){
+		if(check ==1){
 			nextQues();
 			api();
 		}
@@ -115,6 +115,7 @@
 			dw = data.dr;
 			insert(movesplayed,played);
 			insert(answer,play);
+			localStorage.setItem('api',JSON.stringify(data));
 		})
 		.catch(error => {
 		console.error('request failed', error);
@@ -171,7 +172,6 @@
 		  }
 		  else {
 			alert("wrong answer \n"+ "End Score: "+ count);
-			window.location.href = "https://chessdebuts.herokuapp.com/#";
 		  }
 	}
 	function formatwrongans(wrong){
@@ -189,6 +189,29 @@
 		played = [];
 		answerchoice = [];
 		check = 0;
+	}
+	if(JSON.parse(localStorage.getItem('api')) == null)
+	{
+		api();
+	}
+	else{
+		temp = JSON.parse(localStorage.getItem('api')) ;
+		document.getElementById('replay').style.visibility = 'visible';
+		document.getElementById("question").innerHTML = temp.question;
+		if(temp.movesplayed != "")
+			movesplayed = temp.movesplayed;
+		else
+			document.getElementById('replay').style.visibility = 'hidden';
+		if(temp.answer != ""){
+			answer = temp.answer;
+		}
+		formatwrongans(temp.wrongans);
+		ww = temp.ww;
+		bw = temp.bw;
+		dw = temp.dr;
+		insert(movesplayed,played);
+		insert(answer,play);
+		showQuestion();
 	}
 </script>
 </body>
