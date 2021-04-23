@@ -51,11 +51,9 @@ ul.header li a {
   background-color: #2B547E;
 }
 
-
-/* Result Component */
-.result {
-  padding: 1.5rem 2.5rem;
-  font-size: 20px;
+.quiz{
+  border: 1px solid beige;
+  width: 150px;
 }
 
 /* Quiz Component */
@@ -166,3 +164,21 @@ ul.header li a {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+
+img{
+  height: 360px;
+  width: 360px;
+  align-content: center;
+}
+.Col{
+  border-right: 2px solid black;
+}
+.Row{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h1{
+  color:red;
+  align-content: center;
+}
+
