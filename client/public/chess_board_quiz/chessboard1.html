@@ -130,12 +130,7 @@
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 	async function api(){
-		reset2();
-		play = [];
-		played = [];
-		answerchoice = [];
-		answerchoicesan = [];
-		check = 0;
+		nextQues();
 		await fetch('https://chessdebuts.herokuapp.com/getop').then(response=>{
 			return response.json();
 		}).then(data=>{
@@ -283,6 +278,7 @@
 		api();
 	}
 	else{
+		nextQues();
 		temp = JSON.parse(localStorage.getItem('api')) ;
 		document.getElementById('replay').style.visibility = 'visible';
 		document.getElementById("question").innerHTML = temp.question;
@@ -301,7 +297,6 @@
 		formatwrongans(temp.wronganssan,answerchoicesan);
 		answerchoice.push(temp.answer);
 		answerchoicesan.push(temp.answersan);
-		console.log(answerchoice);
 		ww = temp.ww;
 		bw = temp.bw;
 		dw = temp.dr;
@@ -312,7 +307,6 @@
 	document.querySelector("#format").addEventListener("toggleAfter",function(e){
 		format = window.easyToggleState.isActive(event.target);
 		showQuestion();
-		console.log(format);
 	},false);
 </script>
 </body>
