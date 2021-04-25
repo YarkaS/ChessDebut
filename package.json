@@ -20,7 +20,7 @@
     "url": "https://github.com/jayjayh/ChessDebut/issues"
   },
   "engine": {
-    "node": "12.21.0"
+    "node": "14.16.1"
   },
   "homepage": "https://github.com/jayjayh/ChessDebut#readme",
   "dependencies": {
