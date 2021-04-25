@@ -27,7 +27,7 @@ router.get('/getOP', async (req, res) => {
                 res.sendStatus(404);
             switch(rand){
                 case 0:
-                    res.status(200).json({question:`Given the ${d[0].name}. What is the Correct move order`,movesplayed:"",answer:d[0].moves,wrongans:d[1].moves + "|" + d[2].moves + "|" + d[3].moves,mpafterans:d[0].moves,ww:stats.white,bw:stats.black,dr:stats.draws,topgames:stats.topGames});
+                    res.status(200).json({question:`Given the ${d[0].name}. What is the Correct move order`,movesplayed:"",answer:d[0].moves,answersan:d[0].san,wrongans:d[1].moves + "|" + d[2].moves + "|" + d[3].moves,wronganssan:d[1].san + "|" + d[2].san + "|" + d[3].san,mpafterans:d[0].moves,ww:stats.white,bw:stats.black,dr:stats.draws,elo:d[0].ELO});
                     break;
                 case 1:
                     let arr = new Array(3);
@@ -40,13 +40,13 @@ router.get('/getOP', async (req, res) => {
                         arr[count] = t;
                         count++;
                     }
-                    res.status(200).json({question:`You want to play the ${d[0].name}. What is the first move?`,movesplayed:"",answer:d[0].moves.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],mpafterans:d[0].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws,topgames:stats.topGames});
+                    res.status(200).json({question:`You want to play the ${d[0].name}. What is the first move?`,movesplayed:"",answer:d[0].moves.split(' ')[0],answersan:d[0].san.split(' ')[0],wrongans:arr[0] + "|" + arr[1] + "|" + arr[2],wronganssan:arr[0].substr(2) + "|" + arr[1].substr(2) + "|" + arr[2].substr(2),mpafterans:d[0].moves.split(' ')[0],ww:stats.white,bw:stats.black,dr:stats.draws,elo:d[0].ELO});
                     break;
                 case 2:
-                    res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,mpafterans:"",ww:stats.white,bw:stats.black,dr:stats.draws,topgames:stats.topGames});
+                    res.status(200).json({question:`What is this opening?`,movesplayed:d[0].moves,answer:d[0].name,answersan:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,wronganssan:d[1].name + "|" + d[2].name + "|" + d[3].name,mpafterans:"",ww:stats.white,bw:stats.black,dr:stats.draws,elo:d[0].ELO});
                     break;
                 case 3:
-                    res.status(200).json({question:d[0].description + "What opening is this description talking about?",movesplayed:"",answer:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,mpafterans:d[0].moves,ww:stats.white,bw:stats.black,dr:stats.draws,topgames:stats.topGames});
+                    res.status(200).json({question:d[0].description + "What opening is this description talking about?",movesplayed:"",answer:d[0].name,answersan:d[0].name,wrongans:d[1].name + "|" + d[2].name + "|" + d[3].name,wronganssan:d[1].name + "|" + d[2].name + "|" + d[3].name,mpafterans:d[0].moves,ww:stats.white,bw:stats.black,dr:stats.draws,elo:d[0].ELO});
                     break;
                 }
         })
@@ -86,6 +86,7 @@ router.get('/opening/:name', async (req,res) => {
     let id = req.params.name;
     opnv.findOne({where: {name: id}})
     .then(async o => {
+        console.log(o);
         if(o != null)
             res.status(200).send(o);
         else
