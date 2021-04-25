@@ -30,17 +30,43 @@
 			<button id ="nextQuestion" class = "commands btn">Next</button>
 		</div>
 	</div>
+	<!--The data-toggle-class attribute tells this button
+	to toggle the class `is-pressed` on itself on click.
+	As `aria-pressed` attribute is set, its value changes too.
+	-->
+	<button
+		class="switchbox"
+		data-toggle-class="is-pressed"
+		id="format"
+		aria-pressed="false"
+
+		<!--
+		The words 'yes' and 'no' are here to add more sense and to make
+		this component more accessible by not rendering each state with only colors.
+		-->
+		<span class="switchbox-yes">San</span>
+		<span class="switchbox-no">UCI</span>
+
+		<!-- The class `sr-only` is for hiding content for accessibility -->
+		<span class="sr-only">Toggle</span>
+
+	</button>
 </div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
+<script src='toggle.js'></script>
+
 <script>
-	var play = [];
+	var playans = [];
 	var played = [];
+	var mpafterans = "";
 	var answerchoice = [];
+	var answerchoicesan = [];
 	var check = 0;
+	var format = false;
 	var ww,bw,dr = "";
 	const answerButtonsElement = document.getElementById('answer-buttons');
-	var answer = "";
+	var answer, answersan = "";
 	var movesplayed = "";
 	var temp = "";
 	var hasNum = /\d/;
@@ -82,6 +108,13 @@
 			await sleep(1000);
 		}
 	}
+	function toggle(){
+		options.draggable = true;
+		options.clickable = true;
+		document.getElementById("chessboard").remove();
+		document.createElement('div').setAttribute("id","chessboard");
+		abChess = new AbChess("chessboard",options);
+	}
 	function insert(word,arr){
 		if(hasNum.test(word)){
 			var store = word.trim();
@@ -97,6 +130,12 @@
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 	async function api(){
+		reset2();
+		play = [];
+		played = [];
+		answerchoice = [];
+		answerchoicesan = [];
+		check = 0;
 		await fetch('https://chessdebuts.herokuapp.com/getop').then(response=>{
 			return response.json();
 		}).then(data=>{
@@ -108,13 +147,20 @@
 				document.getElementById('replay').style.visibility = 'hidden';
 			if(data.answer != ""){
 				answer = data.answer;
+				answersan = data.answersan;
 			}
-			formatwrongans(data.wrongans);
+			if(data.mpafterans != ""){
+				mpafterans = data.mpafterans;
+			}
+			formatwrongans(data.wrongans, answerchoice);
+			formatwrongans(data.wronganssan, answerchoicesan);
+			answerchoice.push(data.answer);
+			answerchoicesan.push(data.answersan);
 			ww = data.ww;
 			bw = data.bw;
 			dw = data.dr;
 			insert(movesplayed,played);
-			insert(answer,play);
+			insert(answer,playans);
 			localStorage.setItem('api',JSON.stringify(data));
 		})
 		.catch(error => {
@@ -129,11 +175,20 @@
 		  shuffle(answerchoice);
 		for(var i = 0 ; i < 4; i++)
 		{
-			const button = document.createElement('button');
-			button.innerText = answerchoice[i];
-			button.classList.add('btn');
-			button.addEventListener('click', selectAnswer);
-			answerButtonsElement.appendChild(button);
+			if(format == false){
+				const button = document.createElement('button');
+				button.innerText = answerchoice[i];
+				button.classList.add('btn');
+				button.addEventListener('click', selectAnswer);
+				answerButtonsElement.appendChild(button);
+			}
+			else{
+				const button = document.createElement('button');
+				button.innerText = answerchoicesan[i];
+				button.classList.add('btn');
+				button.addEventListener('click', selectAnswer);
+				answerButtonsElement.appendChild(button);
+			}
 		}
 	}
 	function shuffle(array) {
@@ -158,36 +213,69 @@
 		const correct = selectedButton.lastChild.data;
 		 setStatusClass(selectedButton, correct)
 	}
+	function checkans(){
+		var ans = answer.split(' ');
+		var lastmove = lastMove();
+		if(ans.length > 1){
+			if(ans[0] == lastmove.start + lastmove.arrival){
+				ans.shift();
+				answer = ans.join(' ');
+				return 2;
+			}
+			return 0;
+		}
+		else{
+			if(ans[0] == lastmove.start + lastmove.arrival){
+				return 1;
+			}
+			else
+				return 0;
+		}
+			
+	}
+	function completedQuestion(){
+		var check = checkans();
+		if(check == 0)
+			console.log("wrong answer");
+		if(check == 1)
+			console.log("correct answer");
+		if(check == 2)
+			console.log("not done answering");
+	}
+	function lastMove(){
+		console.log(abChess.getLastMove());
+		return abChess.getLastMove();
+	}
 	function setStatusClass(element, correct) {
-		  if (correct == answer && check == 0) {
-			play = [];
-			insert(answer,play);
-			continues(play);
+		  if ((correct == answer||correct == answersan) && check == 0) {
+			playans = [];
+			insert(mpafterans,playans);
+			continues(playans);
 			count++;
 			check = 1;
 			alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
 		  } 
-		  else if(correct == answer){
+		  else if(correct == answer||(correct == answersan)){
 			return;
 		  }
 		  else {
 			alert("wrong answer \n"+ "End Score: "+ count);
 		  }
 	}
-	function formatwrongans(wrong){
+	function formatwrongans(wrong, arr){
 		var store = wrong;
 		for(var i = 0; i <2; i++){
-			answerchoice.push(store.substring(0,store.indexOf("|")));
-				store = store.substring(store.indexOf("|")+1);
+			arr.push(store.substring(0,store.indexOf("|")));
+			store = store.substring(store.indexOf("|")+1);
 		}
-		answerchoice.push(store);
-		answerchoice.push(answer);
+		arr.push(store);
 	}
 	function nextQues(){
 		reset2();
 		play = [];
 		played = [];
 		answerchoice = [];
+		answerchoicesan = [];
 		check = 0;
 	}
 	if(JSON.parse(localStorage.getItem('api')) == null)
@@ -204,15 +292,28 @@
 			document.getElementById('replay').style.visibility = 'hidden';
 		if(temp.answer != ""){
 			answer = temp.answer;
+			answersan = temp.answersan;
 		}
-		formatwrongans(temp.wrongans);
+		if(temp.mpafterans != ""){
+				mpafterans = temp.mpafterans;
+		}
+		formatwrongans(temp.wrongans,answerchoice);
+		formatwrongans(temp.wronganssan,answerchoicesan);
+		answerchoice.push(temp.answer);
+		answerchoicesan.push(temp.answersan);
+		console.log(answerchoice);
 		ww = temp.ww;
 		bw = temp.bw;
 		dw = temp.dr;
 		insert(movesplayed,played);
-		insert(answer,play);
+		insert(mpafterans,playans);
 		showQuestion();
 	}
+	document.querySelector("#format").addEventListener("toggleAfter",function(e){
+		format = window.easyToggleState.isActive(event.target);
+		showQuestion();
+		console.log(format);
+	},false);
 </script>
 </body>
 </html>
