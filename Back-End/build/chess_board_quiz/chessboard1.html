@@ -5,6 +5,19 @@
 	<meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
 	<link rel="stylesheet" href="test.css">
+   <style media="screen">
+      .page-header {
+        height: 100vh;
+      }
+
+      .page-header .description {
+        color: #ffffff;
+      }
+
+      .header-filter .container {
+        padding-top: 33vh;
+      }
+    </style>
 </head>
 <body>
 <div >
@@ -14,8 +27,7 @@
             <p id="progressText" class="hud-prefix">
               Question
             </p>
-            <div id="progressBar">
-              <div id="progressBarFull"></div>
+            
             </div>
             <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
             <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
@@ -23,11 +35,7 @@
           </div>
           <div id="hud-item">
             <p class="hud-prefix">
-              Score
-            </p>
-            <h4 class="hud-main-text" id="score">
-              0
-            </h4>
+              Score:  <class="hud-main-text" id="score">   0  </p>
             
             
           </div>
