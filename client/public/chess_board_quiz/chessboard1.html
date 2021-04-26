@@ -8,6 +8,30 @@
 </head>
 <body>
 <div >
+ 
+        <div id="hud">
+          <div id="hud-item">
+            <p id="progressText" class="hud-prefix">
+              Question
+            </p>
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
+            </div>
+            <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
+            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
+            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
+          </div>
+          <div id="hud-item">
+            <p class="hud-prefix">
+              Score
+            </p>
+            <h4 class="hud-main-text" id="score">
+              0
+            </h4>
+            
+            
+          </div>
+        </div>
 <a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
 <div class = "center">
 	<div class = "containercontainer">
@@ -57,6 +81,11 @@
 <script src='toggle.js'></script>
 
 <script>
+        const progressText = document.getElementById('progressText');
+        const scoreText = document.getElementById('score');
+        const progressBarFull = document.getElementById('progressBarFull');
+        
+
 	var playans = [];
 	var played = [];
 	var mpafterans = "";
@@ -163,7 +192,12 @@
 		});
 		showQuestion();
 	}
+	
+
+
 	function showQuestion() {
+
+    		
 		while (answerButtonsElement.firstChild) {
 			answerButtonsElement.removeChild(answerButtonsElement.firstChild)
 		  }
@@ -185,6 +219,10 @@
 				answerButtonsElement.appendChild(button);
 			}
 		}
+		questionCounter++;
+		progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+    //Update the progress bar
+    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 	}
 	function shuffle(array) {
 		  var currentIndex = array.length, temporaryValue, randomIndex;
@@ -236,6 +274,9 @@
 			console.log("correct answer");
 		if(check == 2)
 			console.log("not done answering");
+			
+	
+	   
 	}
 	function lastMove(){
 		console.log(abChess.getLastMove());
@@ -248,15 +289,25 @@
 			continues(playans);
 			count++;
 			check = 1;
-			alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
+			document.getElementById("progressText").innerHTML = "Correct Answer";
+			document.getElementById("score").innerHTML = count;
+			document.getElementById("ww").innerHTML = ww;
+			document.getElementById("bw").innerHTML = bw;
+			document.getElementById("dw").innerHTML = dw;
+    
+			
+		//	alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
+			
 		  } 
 		  else if(correct == answer||(correct == answersan)){
 			return;
 		  }
 		  else {
-			alert("wrong answer \n"+ "End Score: "+ count);
+		        document.getElementById("progressText").innerHTML = "Wrong Answer";
+			//alert("wrong answer \n"+ "End Score: "+ count);
 		  }
 	}
+
 	function formatwrongans(wrong, arr){
 		var store = wrong;
 		for(var i = 0; i <2; i++){
