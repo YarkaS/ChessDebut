@@ -238,3 +238,22 @@ body {
 .switchbox.is-pressed:focus::before {
 	background-color: white;
 }
+/* HUD */
+
+#hud {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.hud-prefix {
+  text-align: justify;
+  font-size: 1.2rem;
+  background-color: white;
+}
+
+.hud-main-text {
+  text-align: justify;
+  background-color: white;
+}
+
