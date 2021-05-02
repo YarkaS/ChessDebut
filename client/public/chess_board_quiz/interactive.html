@@ -28,9 +28,11 @@
           <p class="hud-prefix">
               Score:  <class="hud-main-text" id="score">   0  </t>
             <p id="progressText" class="hud-prefix">
-              Question
+              Question 
             </p>
-            
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
+            </div>
             </div>
             <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
             <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
@@ -69,7 +71,8 @@
         const progressText = document.getElementById('progressText');
         const scoreText = document.getElementById('score');
         const progressBarFull = document.getElementById('progressBarFull');
-        
+        const MAX_QUESTIONS = 15;
+        q_counter = 0;
 
 	var tempquestion = fetch('https://chessdebuts.herokuapp.com/opening/King\'s Gambit').then(response=>{
 			return response.json();});
@@ -175,6 +178,7 @@
 		if(check == 1){
 			//console.log("correct answer");
 			check = 1;
+			q_counter++;
 			//document.getElementById("temp2").innerHTML = "Correct"; 
 		}
 		if(check == 2){
@@ -203,6 +207,15 @@
 		arr.push(store);
 	}
 	function nextQues(){
+		if ( q_counter >= MAX_QUESTIONS) {
+        		
+        		return window.location.assign('./../index.html');
+    		}
+    		
+    		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    		progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
+		
 		reset2();
 		play = [];
 		played = [];
@@ -229,6 +242,7 @@
 		bw = temp.bw;
 		dw = temp.dr;
 		insert(movesplayed,played);
+		
 	}
 	abChess.onMovePlayed(completedQuestion);
 </script>
