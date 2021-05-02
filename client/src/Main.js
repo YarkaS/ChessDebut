@@ -8,6 +8,7 @@ import Home from "./Home";
 import Play from "./Play";
 import Dictionary from "./Dictionary"; 
 import Board from "./Board";
+
 class Main extends Component {
   render() {
     return (
