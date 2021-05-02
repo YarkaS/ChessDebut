@@ -8,7 +8,7 @@ import Home from "./Home";
 import Play from "./Play";
 import Dictionary from "./Dictionary"; 
 import Board from "./Board";
-
+import Trending from "./Trending";
 class Main extends Component {
   render() {
     return (
@@ -20,13 +20,15 @@ class Main extends Component {
             <li><NavLink to="/play">Short Quiz</NavLink></li>
             <li><NavLink to="/dictionary">Dictionary</NavLink></li>
             <li><NavLink to="/board">Chess Board</NavLink></li>
+            <li><NavLink to="/trending">Trending</NavLink></li>
             
           </ul>
           <div className="content">
             <Route exact path="/" component={Home}/>
             <Route path="/play" component={Play}/>
             <Route path="/Dictionary" component={Dictionary}/>
-            <Route path="/Board" component={Board}/>              
+            <Route path="/Board" component={Board}/> 
+            <Route path="/Trending" component={Trending}/>              
           </div>
         </div>
       </HashRouter>

@@ -6,6 +6,7 @@ class Board extends Component {
       <div>
       
         <p>"The place for a board or a game." </p>
+
       </div>
     );
   }
