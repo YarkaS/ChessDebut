@@ -2,9 +2,7 @@
   box-sizing: border-box;
 }
 :root {
-  --hue-neutral: 200;
-  --hue-wrong: 0;
-  --hue-correct: 145;
+	--theme: #00885a;
 }
 #main-container {
     width: 90%;
@@ -116,7 +114,7 @@ body {
   background-color: #E5E4E2;
   padding: 20px;
   margin: 0;
-  background: url(blurchess.jpg) no-repeat center center fixed; 
+  background: no-repeat center center fixed; /*url(blurchess.jpg) */
   -webkit-background-size: cover;
   background-size: cover;
 }
@@ -155,3 +153,119 @@ body {
   display: inline-block;
   font-size: 16px;
 }
+.switchbox {
+	position: relative;
+	display: inline-block;
+	width: 3em;
+	height: 1em;
+	padding: .125em;
+	overflow: hidden;
+	box-sizing: content-box;
+	border: 2px solid darkgrey;
+	outline: none;
+	border-radius: .75em;
+	background-color: white;
+	font-size: 1.25em;
+	vertical-align: middle;
+	cursor: pointer;
+	transition: .15s ease-out;
+}
+.switchbox::before {
+	position: relative;
+	z-index: 2;
+	display: block;
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+	background-color: darkgrey;
+	content: '';
+	transition: .15s ease-out;
+}
+.switchbox + label {
+	vertical-align: middle;
+}
+.switchbox-yes,
+.switchbox-no {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	transform: translateY(-50%);
+	font-size: .75em;
+	text-transform: uppercase;
+	pointer-events: none;
+	transition: inherit;
+}
+.switchbox-yes {
+	left: .75em;
+	color: white;
+	font-weight: bold;
+	opacity: 0;
+}
+.switchbox-no {
+	right: .75em;
+	color: darkgrey;
+	opacity: 1;
+}
+.switchbox:hover,
+.switchbox:focus {
+	border-color: var(--theme); /* You probably need to change this! */
+	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+}
+.switchbox:hover::before,
+.switchbox:focus::before {
+	background-color: var(--theme); /* You probably need to change this! */
+}
+
+.switchbox.is-pressed {
+	border-color: var(--theme); /* You probably need to change this! */
+	background-color: var(--theme); /* You probably need to change this too! */
+}
+.switchbox.is-pressed .switchbox-yes {
+	opacity: 1;
+}
+.switchbox.is-pressed .switchbox-no {
+	opacity: 0;
+}
+.switchbox.is-pressed::before {
+	transform: translateX(2em);
+	background-color: white;
+}
+.switchbox.is-pressed:hover,
+.switchbox.is-pressed:focus {
+	border-color: rgba(0,0,0,.35);
+}
+.switchbox.is-pressed:hover::before,
+.switchbox.is-pressed:focus::before {
+	background-color: white;
+}
+/* HUD */
+
+#hud {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.hud-prefix {
+  text-align: justify;
+  font-size: 1.2rem;
+  background-color: white;
+}
+
+.hud-main-text {
+  text-align: justify;
+  background-color: white;
+}
+#progressBar {
+  width: 10rem;
+  height: 2rem;
+  border: 0.12rem solid #10822c;
+  margin-top: 0.75rem;
+}
+
+#progressBarFull {
+  height: 1.75rem;
+  background-color: #10822c;
+  width: 0%;
+}
+

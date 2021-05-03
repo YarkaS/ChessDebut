@@ -27,6 +27,7 @@
     "react-slick": "0.26.1",
     "react-swipeable-views": "0.13.9",
     "react-transition-group": "^1.2.1",
+    "react-twitter-embed": "^3.0.3",
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {

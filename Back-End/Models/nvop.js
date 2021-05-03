@@ -20,10 +20,18 @@ const nvop = db.define('chess openings', {
         type: Sequelize.STRING,
         allowNull:false
     },
+    san:{
+        type: Sequelize.STRING,
+        allowNull:false
+    },
     description:{
         type: Sequelize.STRING,
         allowNull:false
 
+    },
+    ELO:{
+        type: Sequelize.INTEGER,
+        allowNull:false
     }
 
 });

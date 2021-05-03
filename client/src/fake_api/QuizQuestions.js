@@ -4,11 +4,11 @@ var quizQuestions = [
       answers: [
           {
               type: "correct",
-              content: "b2b4"
+              content: "1.b4"
           },
           {
               type: "incorrect",
-              content: "d2d4 f7f5"
+              content: "1.d4 f5"
           }
       ]
   },
@@ -17,16 +17,16 @@ var quizQuestions = [
       answers: [
           {
               type: "correct",
-              content: "b2b3"
+              content: "1.b3"
           },
           {
               type: "incorrect",
-              content: "d2d4"
+              content: "1.d4"
           }
       ]
   },
   {
-      question: "What is this opening: e2e4 e7e5 g1f3 b8c6 b1c3 g8f6?",
+      question: "What is this opening: 1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6?",
       answers: [
           {
               type: "correct",
@@ -43,11 +43,11 @@ var quizQuestions = [
       answers: [
           {
               type: "correct",
-              content: "d2d4 g8f6 c2c4 e7e6 g2g3"
+              content: "1.d4 Nf6 2.c4 e6 3.g3"
           },
           {
               type: "incorrect",
-              content: "e2e4 e7e5 g1f3 b8c6 "
+              content: "1.e4 e5 2.Nf3 Nc6 "
           }
       ]
   },
@@ -56,11 +56,11 @@ var quizQuestions = [
       answers: [
           {
               type: "correct",
-              content: "f2f4"
+              content: "1.f4"
           },
           {
               type: "incorrect",
-              content: "e2e4"
+              content: "1.e4"
           }
       ]
   }

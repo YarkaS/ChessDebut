@@ -1142,6 +1142,17 @@ window.AbChess = window.AbChess || function (abId, abOptions) {
             game.tags.Result = result;
         };
 
+        game.getLastMove = function(){
+
+            var lastIndex = game.moves.length-1;
+            if(lastIndex == -1){
+                return {start:"",arrival:"",promotion:undefined};
+            }
+            else
+                return game.moves[lastIndex];
+
+        }
+
         return game.create();
     }
 
@@ -2101,6 +2112,9 @@ window.AbChess = window.AbChess || function (abId, abOptions) {
         },
         getInfo: function (info) {
             return abBoard.game.tags[info];
+        },
+        getLastMove: function(){
+            return abBoard.game.getLastMove();
         },
         getLegalMoves: function (index) {
             var legalMoves = [];
