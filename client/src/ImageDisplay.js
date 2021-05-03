@@ -8,7 +8,7 @@ function ImageDemo() {
   return (
     <Image
       width={200}
-      src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+      src = "./Imgs/Alekhine.jpeg"
     />
   );
 }

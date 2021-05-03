@@ -385,7 +385,7 @@ export default class DrawerForm extends React.Component {
             </Row>
             <Row gutter={16}>
               <Col span={12}>
-                <div>
+                <div className = "whiteSpace">
                   <img src="https://media2.uscfsales.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/_/1_eso_b_5_-_korica.jpg" />
                 </div>
               </Col>
