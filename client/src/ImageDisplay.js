@@ -8,7 +8,7 @@ function ImageDemo() {
   return (
     <Image
       width={200}
-      src = {require("./Imgs/Benoni.jpeg").default}
+      src = {require("./Imgs/Amar.jpeg").default}
     />
   );
 }
