@@ -175,18 +175,6 @@ ul.header li a {
 }
 
 img{
-  height: 360px;
-  width: 360px;
-  align-content: center;
-}
-.Col{
-  border-right: 2px solid black;
-}
-.Row{
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-cols{
-  justify-content: center;
-  text-align: center;
+  height:465px;
+  width:265px;
 }
