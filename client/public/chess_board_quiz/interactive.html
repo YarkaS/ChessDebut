@@ -26,7 +26,7 @@
         <div id="hud" style = "background-color: white;">
           <div id="hud-item">
           <p class="hud-prefix">
-              Score:  <class="hud-main-text" id="score">   0  </t> </div>
+              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
             <p id="progressText" class="hud-prefix">
               Question 
             </p> 
@@ -37,10 +37,7 @@
       <!---      <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
             <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
             <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4> --->
-          </div> 
-          
-         
-        </div>
+ </div> 
 
 <div class = "center">
 	<div class = "containercontainer">
@@ -74,9 +71,8 @@
         const progressBarFull = document.getElementById('progressBarFull');
         const MAX_QUESTIONS = 15;
         q_counter = 0;
-
-	var tempquestion = fetch('https://chessdebuts.herokuapp.com/opening/King\'s Gambit').then(response=>{
-			return response.json();});
+	var currentR = 1500.0;
+	var puzzleR;
 	var movecount = 0;
 	var playans = [];
 	var check = 0;
@@ -97,6 +93,8 @@
 	var next = document.getElementById("nextQuestion");
 	var resetbutt = document.getElementById("resetButton");
 	next.addEventListener("click",async function(){
+		elorate(currentR, puzzleR , 30.0);
+		document.getElementById("score").innerHTML = Math.round(currentR);
 		if(check ==1){
 			nextQues();
 			api();
@@ -180,6 +178,7 @@
 			//console.log("correct answer");
 			check = 1;
 			q_counter++;
+			localStorage.setItem('questioncount',q_counter);
 			//document.getElementById("temp2").innerHTML = "Correct"; 
 		}
 		if(check == 2){
@@ -224,6 +223,21 @@
 		movecount = 0;
 		document.getElementById("temp2").innerHTML = "**This is only a note** <br>Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>and this text should change <br> if you need help open up the console and type in answer for the answer."; 
 	}
+	function prob(rate1, rate2)
+	{
+		return 1.0 * 1.0/ (1+1.0*Math.pow(10,1.0*(rate1-rate2)/400));
+	}
+	function elorate(rate1, rate2, k)
+	{
+		if( check == 1){
+			currentR = currentR +k *(1.0- prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
+		else{
+			currentR = currentR +k * (0.0-prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
+	}
 	if(JSON.parse(localStorage.getItem('api')) == null)
 	{
 		api();
@@ -243,7 +257,18 @@
 		bw = temp.bw;
 		dw = temp.dr;
 		insert(movesplayed,played);
-		
+		if(localStorage.getItem('elo')!= null)
+			currentR = parseFloat(localStorage.getItem('elo'));
+		document.getElementById("score").innerHTML = Math.round(currentR);
+		if(localStorage.getItem('questioncount')!= null)
+			q_counter = (localStorage.getItem('questioncount'));
+		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    	progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
+		if((hasNum.test(answer)))
+			;
+		else
+			api();
 	}
 	abChess.onMovePlayed(completedQuestion);
 </script>
