@@ -1,0 +1,276 @@
+<!Doctype html>
+<html lang ="en">
+<head>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+    <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
+	<link rel="stylesheet" href="test.css">
+   <style media="screen">
+      .page-header {
+        height: 100vh;
+      }
+
+      .page-header .description {
+        color: #ffffff;
+      }
+
+      .header-filter .container {
+        padding-top: 33vh;
+      }
+    </style>
+</head>
+<body>
+
+<div >
+ 
+        <div id="hud" style = "background-color: white;">
+          <div id="hud-item">
+          <p class="hud-prefix">
+              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
+            <p id="progressText" class="hud-prefix">
+              Question 
+            </p> 
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
+            </div>
+           </div>
+      <!---      <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
+            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
+            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4> --->
+ </div> 
+
+<div class = "center">
+	<div class = "containercontainer">
+		<div id="chessboard"></div>
+		<div class="container">
+			<div id="question-container">
+			  <div id="question" class="quest">Question</div>
+			</div>
+			<div id="temp" style = "margin-top:20px">
+				<div id="temp2">
+					**This is only a note** <br>
+					Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>
+					and this text should change.
+				</div>
+			</div>
+		</div>
+		<div class = "bottomright">
+			<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
+			<button id = "resetButton" class = "commands btn">Reset Question</button>
+			<button id ="nextQuestion" class = "commands btn">Next</button>
+		</div>
+	</div>
+</div>
+</div>
+<script src='AbChess/AbChess-0.3.1.js'></script>
+<script src='toggle.js'></script>
+
+<script>
+        const progressText = document.getElementById('progressText');
+        const scoreText = document.getElementById('score');
+        const progressBarFull = document.getElementById('progressBarFull');
+        const MAX_QUESTIONS = 15;
+        q_counter = 0;
+	var currentR = 1500.0;
+	var puzzleR;
+	var movecount = 0;
+	var playans = [];
+	var check = 0;
+	var ww,bw,dr = "";
+	const answerButtonsElement = document.getElementById('answer-buttons');
+	var movesplayed = "";
+	var letters = /^[A-Za-z]+$/;
+	var temp = "";
+	var hasNum = /\d/;
+	var abChess = {};
+	var options = {
+		width: 480,
+		animated: true,
+		animationSpeed: 3,
+	};
+	abChess = new AbChess("chessboard",options);
+	abChess.setFEN();
+	var next = document.getElementById("nextQuestion");
+	var resetbutt = document.getElementById("resetButton");
+	next.addEventListener("click",async function(){
+		elorate(currentR, puzzleR , 30.0);
+		document.getElementById("score").innerHTML = Math.round(currentR);
+		if(check ==1){
+			nextQues();
+			api();
+			document.getElementById("temp2").innerHTML = "Correct"; 
+		}
+		else
+			document.getElementById("temp2").innerHTML = "Wrong";
+		
+	});
+	resetbutt.addEventListener("click", async () =>{
+		nextQues();
+	});
+	async function reset2(){
+		abChess.reset();
+		abChess.setFEN();
+	}
+	function insert(word,arr){
+		if(hasNum.test(word)){
+			var store = word.trim();
+			while(store.length>2)
+			{
+				arr.push(store.substring(0,2));
+				store = store.substring(2).trim();
+			}
+			arr.push(store.trim());
+		}
+	}
+	async function api(){
+		nextQues();
+		await fetch('https://chessdebuts.herokuapp.com/getop').then(response=>{
+			return response.json();
+		}).then(data=>{
+			document.getElementById("question").innerHTML = data.question;
+			if(data.answer != ""){
+				answer = data.answer.trim();
+				answersan = data.answersan.trim();
+			}
+			ww = data.ww;
+			bw = data.bw;
+			dw = data.dr;
+			insert(answer,playans);
+			localStorage.setItem('api',JSON.stringify(data));
+			if((hasNum.test(answer)))
+			{
+				return;
+			}
+			else
+				api();
+		})
+		.catch(error => {
+		console.error('request failed', error);
+		});
+	}
+	function checkans(){
+		var ans = answer.split(' ');
+		var lastmove = lastMove();
+		if(movecount != ans.length-1){
+			if(ans[movecount] == lastmove.start + lastmove.arrival){
+				answer = ans.join(' ');
+				return 2;
+			}
+			return 0;
+		}
+		else{
+			if(ans[movecount] == lastmove.start + lastmove.arrival){
+				return 1;
+			}
+			else
+				return 0;
+		}
+			
+	}
+	function completedQuestion(){
+		check = checkans();
+		movecount++;
+		if(check == 0){
+			//console.log("wrong answer");
+			//document.getElementById("temp2").innerHTML = "Wrong"; 
+		}
+		if(check == 1){
+			//console.log("correct answer");
+			check = 1;
+			q_counter++;
+			localStorage.setItem('questioncount',q_counter);
+			//document.getElementById("temp2").innerHTML = "Correct"; 
+		}
+		if(check == 2){
+			//console.log("not done answering");
+			if(abChess.getActiveColor(movecount) == "b"){
+
+				setTimeout(() => {
+					var blackmove = answer.split(' ')[movecount];
+					abChess.play(blackmove.substring(0,2),blackmove.substring(2));
+					turn = 0;
+				},800);
+				
+			}
+		}
+	}
+	function lastMove(){
+		//console.log(abChess.getLastMove());
+		return abChess.getLastMove();
+	}
+	function formatwrongans(wrong, arr){
+		var store = wrong;
+		for(var i = 0; i <2; i++){
+			arr.push(store.substring(0,store.indexOf("|")));
+			store = store.substring(store.indexOf("|")+1);
+		}
+		arr.push(store);
+	}
+	function nextQues(){
+		if ( q_counter >= MAX_QUESTIONS) {
+        		
+        		return window.location.assign('./../index.html');
+    		}
+    		
+    		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    		progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
+		
+		reset2();
+		play = [];
+		played = [];
+		check = 0;
+		movecount = 0;
+		document.getElementById("temp2").innerHTML = "**This is only a note** <br>Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>and this text should change <br> if you need help open up the console and type in answer for the answer."; 
+	}
+	function prob(rate1, rate2)
+	{
+		return 1.0 * 1.0/ (1+1.0*Math.pow(10,1.0*(rate1-rate2)/400));
+	}
+	function elorate(rate1, rate2, k)
+	{
+		if( check == 1){
+			currentR = currentR +k *(1.0- prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
+		else{
+			currentR = currentR +k * (0.0-prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
+	}
+	if(JSON.parse(localStorage.getItem('api')) == null)
+	{
+		api();
+	}
+	else{
+		nextQues();
+		temp = JSON.parse(localStorage.getItem('api')) ;
+		document.getElementById("question").innerHTML = temp.question;
+		if(temp.answer != ""){
+			answer = temp.answer;
+			answersan = temp.answersan;
+		}
+		if(temp.mpafterans != ""){
+				mpafterans = temp.mpafterans;
+		}
+		ww = temp.ww;
+		bw = temp.bw;
+		dw = temp.dr;
+		insert(movesplayed,played);
+		if(localStorage.getItem('elo')!= null)
+			currentR = parseFloat(localStorage.getItem('elo'));
+		document.getElementById("score").innerHTML = Math.round(currentR);
+		if(localStorage.getItem('questioncount')!= null)
+			q_counter = (localStorage.getItem('questioncount'));
+		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    	progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
+		if((hasNum.test(answer)))
+			;
+		else
+			api();
+	}
+	abChess.onMovePlayed(completedQuestion);
+</script>
+</body>
+</html>

@@ -1,33 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.6615cf1f.chunk.css",
-    "main.js": "/static/js/main.bba100ac.chunk.js",
-    "main.js.map": "/static/js/main.bba100ac.chunk.js.map",
+    "main.css": "/static/css/main.6b52b7ac.chunk.css",
+    "main.js": "/static/js/main.1e254eb9.chunk.js",
+    "main.js.map": "/static/js/main.1e254eb9.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.03887cff.js",
     "runtime-main.js.map": "/static/js/runtime-main.03887cff.js.map",
-    "static/css/2.4c97ca4f.chunk.css": "/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.b0049ac9.chunk.js": "/static/js/2.b0049ac9.chunk.js",
-    "static/js/2.b0049ac9.chunk.js.map": "/static/js/2.b0049ac9.chunk.js.map",
+    "static/css/2.0cd11440.chunk.css": "/static/css/2.0cd11440.chunk.css",
+    "static/js/2.51724ed8.chunk.js": "/static/js/2.51724ed8.chunk.js",
+    "static/js/2.51724ed8.chunk.js.map": "/static/js/2.51724ed8.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/2.4c97ca4f.chunk.css.map": "/static/css/2.4c97ca4f.chunk.css.map",
-    "static/css/main.6615cf1f.chunk.css.map": "/static/css/main.6615cf1f.chunk.css.map",
-    "static/js/2.b0049ac9.chunk.js.LICENSE.txt": "/static/js/2.b0049ac9.chunk.js.LICENSE.txt",
-    "static/media/Alekhine.jpeg": "/static/media/Alekhine.3e2561b1.jpeg",
-    "static/media/Amar.jpeg": "/static/media/Amar.0e9de15a.jpeg",
+    "static/css/2.0cd11440.chunk.css.map": "/static/css/2.0cd11440.chunk.css.map",
+    "static/css/main.6b52b7ac.chunk.css.map": "/static/css/main.6b52b7ac.chunk.css.map",
+    "static/js/2.51724ed8.chunk.js.LICENSE.txt": "/static/js/2.51724ed8.chunk.js.LICENSE.txt",
     "static/media/Benoni.jpeg": "/static/media/Benoni.0c816805.jpeg",
-    "static/media/BirdsOpening.jpeg": "/static/media/BirdsOpening.226c3aca.jpeg",
-    "static/media/Caro-Kann.jpeg": "/static/media/Caro-Kann.e0bf0de3.jpeg",
-    "static/media/Catalan.jpeg": "/static/media/Catalan.f63ecffd.jpeg",
-    "static/media/Dutch.jpeg": "/static/media/Dutch.d85d8afb.jpeg",
-    "static/media/English.jpeg": "/static/media/English.d38b7a4e.jpeg",
-    "static/media/FourKnights.jpeg": "/static/media/FourKnights.df838e0c.jpeg",
     "static/media/index.css": "/static/media/icon-check.c6ffc20e.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.03887cff.js",
-    "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.b0049ac9.chunk.js",
-    "static/css/main.6615cf1f.chunk.css",
-    "static/js/main.bba100ac.chunk.js"
+    "static/css/2.0cd11440.chunk.css",
+    "static/js/2.51724ed8.chunk.js",
+    "static/css/main.6b52b7ac.chunk.css",
+    "static/js/main.1e254eb9.chunk.js"
   ]
 }

@@ -256,4 +256,16 @@ body {
   text-align: justify;
   background-color: white;
 }
+#progressBar {
+  width: 10rem;
+  height: 2rem;
+  border: 0.12rem solid #10822c;
+  margin-top: 0.75rem;
+}
+
+#progressBarFull {
+  height: 1.75rem;
+  background-color: #10822c;
+  width: 0%;
+}
 

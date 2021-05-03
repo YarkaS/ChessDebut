@@ -5,40 +5,34 @@
 	<meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
 	<link rel="stylesheet" href="test.css">
-   <style media="screen">
-      .page-header {
-        height: 100vh;
-      }
 
-      .page-header .description {
-        color: #ffffff;
-      }
-
-      .header-filter .container {
-        padding-top: 33vh;
-      }
-    </style>
 </head>
-<body>
 
+<body class="components-page">
+  <div id="root"></div>
+    
 <div >
- 
+<!---	<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a> 
+ --->
         <div id="hud">
           <div id="hud-item">
           <p class="hud-prefix">
-              Score:  <class="hud-main-text" id="score">   0  </t>
+              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
             <p id="progressText" class="hud-prefix">
               Question
             </p>
-            
+			<p id="answerText" class="hud-prefix">
+            </p>
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
             </div>
+           
             <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
             <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
             <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
           </div>
-          <a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
          
-        </div>
+</div>
 
 <div class = "center">
 	<div class = "containercontainer">
@@ -58,6 +52,7 @@
 			</div>
 		</div>
 		<div class = "bottomright">
+			<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
 			<button id ="nextQuestion" class = "commands btn">Next</button>
 		</div>
 	</div>
@@ -88,11 +83,14 @@
 <script src='toggle.js'></script>
 
 <script>
-        const progressText = document.getElementById('progressText');
+         const progressText = document.getElementById('progressText');
         const scoreText = document.getElementById('score');
         const progressBarFull = document.getElementById('progressBarFull');
+        const MAX_QUESTIONS = 15;
+        var q_counter = 0;
         
-
+	var currentR = 1500.0;
+	var puzzleR;
 	var playans = [];
 	var played = [];
 	var mpafterans = "";
@@ -131,6 +129,7 @@
 		if(check ==1){
 			nextQues();
 			api();
+			document.getElementById("answerText").innerHTML = "";
 		}
 	});
 	async function reset2(){
@@ -187,6 +186,7 @@
 			formatwrongans(data.wronganssan, answerchoicesan);
 			answerchoice.push(data.answer);
 			answerchoicesan.push(data.answersan);
+			puzzleR = data.elo;
 			ww = data.ww;
 			bw = data.bw;
 			dw = data.dr;
@@ -200,8 +200,6 @@
 		showQuestion();
 	}
 	
-
-
 	function showQuestion() {
 
     		
@@ -226,10 +224,6 @@
 				answerButtonsElement.appendChild(button);
 			}
 		}
-		questionCounter++;
-		progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
-    //Update the progress bar
-    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 	}
 	function shuffle(array) {
 		  var currentIndex = array.length, temporaryValue, randomIndex;
@@ -253,42 +247,6 @@
 		const correct = selectedButton.lastChild.data;
 		 setStatusClass(selectedButton, correct)
 	}
-	function checkans(){
-		var ans = answer.split(' ');
-		var lastmove = lastMove();
-		if(ans.length > 1){
-			if(ans[0] == lastmove.start + lastmove.arrival){
-				ans.shift();
-				answer = ans.join(' ');
-				return 2;
-			}
-			return 0;
-		}
-		else{
-			if(ans[0] == lastmove.start + lastmove.arrival){
-				return 1;
-			}
-			else
-				return 0;
-		}
-			
-	}
-	function completedQuestion(){
-		var check = checkans();
-		if(check == 0)
-			console.log("wrong answer");
-		if(check == 1)
-			console.log("correct answer");
-		if(check == 2)
-			console.log("not done answering");
-			
-	
-	   
-	}
-	function lastMove(){
-		console.log(abChess.getLastMove());
-		return abChess.getLastMove();
-	}
 	function setStatusClass(element, correct) {
 		  if ((correct == answer||correct == answersan) && check == 0) {
 			playans = [];
@@ -296,13 +254,17 @@
 			continues(playans);
 			count++;
 			check = 1;
-			document.getElementById("progressText").innerHTML = "Correct Answer";
-			document.getElementById("score").innerHTML = count;
+			elorate(currentR, puzzleR , 30.0);
+			document.getElementById("answerText").innerHTML = "Correct Answer";
+			document.getElementById("score").innerHTML = Math.round(currentR);
 			document.getElementById("ww").innerHTML = ww;
 			document.getElementById("bw").innerHTML = bw;
 			document.getElementById("dw").innerHTML = dw;
-    
-			
+    		q_counter++;
+			localStorage.setItem('questioncount',q_counter);
+			progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+			progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`
 		//	alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
 			
 		  } 
@@ -310,7 +272,9 @@
 			return;
 		  }
 		  else {
-		        document.getElementById("progressText").innerHTML = "Wrong Answer";
+		        document.getElementById("answerText").innerHTML = "Wrong Answer";
+				elorate(currentR, puzzleR , 30.0);
+			document.getElementById("score").innerHTML = Math.round(currentR);
 			//alert("wrong answer \n"+ "End Score: "+ count);
 		  }
 	}
@@ -324,12 +288,33 @@
 		arr.push(store);
 	}
 	function nextQues(){
+		if ( q_counter >= MAX_QUESTIONS) {
+			return window.location.assign('./../index.html');
+		}	
+		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    	progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
 		reset2();
 		play = [];
 		played = [];
 		answerchoice = [];
 		answerchoicesan = [];
 		check = 0;
+	}
+	function prob(rate1, rate2)
+	{
+		return 1.0 * 1.0/ (1+1.0*Math.pow(10,1.0*(rate1-rate2)/400));
+	}
+	function elorate(rate1, rate2, k)
+	{
+		if( check == 1){
+			currentR = currentR +k *(1.0- prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
+		else{
+			currentR = currentR +k * (0.0-prob(rate2,rate1));
+			localStorage.setItem('elo',currentR);
+		}
 	}
 	if(JSON.parse(localStorage.getItem('api')) == null)
 	{
@@ -355,11 +340,20 @@
 		formatwrongans(temp.wronganssan,answerchoicesan);
 		answerchoice.push(temp.answer);
 		answerchoicesan.push(temp.answersan);
+		puzzleR = temp.elo;
 		ww = temp.ww;
 		bw = temp.bw;
 		dw = temp.dr;
 		insert(movesplayed,played);
 		insert(mpafterans,playans);
+		if(localStorage.getItem('elo')!= null)
+			currentR = parseFloat(localStorage.getItem('elo'));
+		if(localStorage.getItem('questioncount')!= null)
+			q_counter = (localStorage.getItem('questioncount'));
+		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;
+    		//Update the progress bar
+    	progressBarFull.style.width = `${(q_counter / MAX_QUESTIONS) * 100}%`;
+		document.getElementById("score").innerHTML = Math.round(currentR);
 		showQuestion();
 	}
 	document.querySelector("#format").addEventListener("toggleAfter",function(e){
