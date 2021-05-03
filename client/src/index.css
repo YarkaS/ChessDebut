@@ -67,11 +67,7 @@ ul.header li a {
 /* Result Component */
 .result {
   padding: 1.5rem 2.5rem;
-<<<<<<< HEAD
   font-size: 20px;
-=======
-  font-size: 14px;
->>>>>>> 1c9075346cf37f28b3c967481287672e57e58ec5
 }
 .quiz{
   border: 1px solid beige;
