@@ -1,67 +1,40 @@
-import React, { Component } from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import React, { Component, useState } from "react";
+//import {Container, Row, Col, Table } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "antd/dist/antd.css";
 import "./index.css";
+import {
+  Drawer,
+  Button,
+  Form,
+  Col,
+  Row,
+  Input,
+  Select,
+  DatePicker,
+  Image,
+} from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
+import { render } from "@testing-library/react";
+import DrawerForm from "./AutoComplete";
+import ImageDemo from "./ImageDisplay";
 
-class Dictionary extends Component {
-  render() {
-    return (
-      <div>
-        <h2>The dictionary</h2>
-        <p>
-          List of chess{" "}
-          <a href="https://en.wikipedia.org/wiki/List_of_chess_openings">
-            openings
-          </a>
-          .
-        </p>
-        <Container fluid>
-          <Row className = "Row">
-            <Col className = "cols">
-              <h1>Alekhine's Defense</h1>
-              <img src={require("./Imgs/Alekhine.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>Amar Opening</h1>
-              <img src={require("./Imgs/Amar.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>Benoni Opening</h1>
-              <img src={require("./Imgs/Benoni.jpeg").default} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h1>Bird's Opening</h1>
-              <img src={require("./Imgs/BirdsOpening.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>Caro-Kann Defense</h1>
-              <img src={require("./Imgs/Caro-Kann.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>Catalan Opening</h1>
-              <img src={require("./Imgs/Catalan.jpeg").default} />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <h1>Dutch Defense</h1>
-              <img src={require("./Imgs/Dutch.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>English Opening</h1>
-              <img src={require("./Imgs/English.jpeg").default} />
-            </Col>
-            <Col>
-              <h1>Four Knights System</h1>
-              <img src={require("./Imgs/FourKnights.jpeg").default} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
+
+
+function App() {
+  return (
+    <>
+      <h1>Welcome to the Dictionary Page</h1>
+      <h2>Come here to gain learn more about any opening.</h2>
+      <h2>You can view the final board state, see the move order, and read a brief description</h2>
+      <h3>To get started, press on the button</h3>
+      <DrawerForm />
+      <br></br>
+      <ImageDemo />
+    </>
+  );
 }
 
-export default Dictionary;
+export default App;
