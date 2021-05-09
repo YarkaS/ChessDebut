@@ -113,6 +113,22 @@
 		clickable: false,
 		draggable: false
 	};
+	if(window.screen.width > 1280)
+	{
+		options.width = 536;
+	}
+	else if(window.screen.width >=1025 && window.screen.width <=1280)
+	{
+		options.width = 408;
+	}
+	else if(window.screen.width >=768 && window.screen.width <=1024)
+	{
+		options.width = 280;
+	}
+	else
+	{
+		options.width = 136;
+	}
 	abChess = new AbChess("chessboard",options);
 	abChess.setFEN();
 	var replayButton = document.getElementById("replay");
@@ -146,9 +162,9 @@
 	function toggle(){
 		options.draggable = true;
 		options.clickable = true;
-		document.getElementById("chessboard").remove();
-		document.createElement('div').setAttribute("id","chessboard");
+		document.getElementById("chessboard").innerHTML = "";
 		abChess = new AbChess("chessboard",options);
+		abChess.setFEN();
 	}
 	function insert(word,arr){
 		if(hasNum.test(word)){
