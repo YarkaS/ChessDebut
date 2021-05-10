@@ -4,11 +4,12 @@ import 'antd/dist/antd.css';
 import './index.css';
 import { Image } from 'antd';
 
-function ImageDemo() {
+function ImageDemo(url) {
   return (
     <Image
       width={200}
-      src = {require("./Imgs/Amar.jpeg").default}
+      src = {require("./Imgs/Alekhine.jpeg").default}
+      alt="Alekhine's Defense"
     />
   );
 }
