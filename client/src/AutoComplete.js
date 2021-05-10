@@ -15,7 +15,7 @@ import {
   AutoComplete,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-
+import {Link} from "react-router-dom";
 
 const openingsArray = [
     {
@@ -355,7 +355,12 @@ export default class DrawerForm extends React.Component {
     });
   };
 
+  handleChange = () => {
+    console.log('this has beeen selected')
+  }
+
   render() {
+    
     return (
       <>
         <Button type="primary" onClick={this.showDrawer}>
@@ -368,7 +373,7 @@ export default class DrawerForm extends React.Component {
           visible={this.state.visible}
           bodyStyle={{ paddingBottom: 80 }}
         >
-          <Form layout="vertical" hideRequiredMark>
+          <Form layout="vertical" hideRequiredMark onChange={this.handleChange}>
             <Row gutter={16}>
               <AutoComplete
                 style={{
