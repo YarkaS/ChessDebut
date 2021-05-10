@@ -96,14 +96,6 @@
 .move-span:hover {
     background-color: gainsboro;
 }
-.container {
-  display: inline-block;
-  width: 480px;
-  height: 480px;
-  max-width: 80%;
-  background-color: rgb(255,245,238);
-  padding: 10px;
-}
 .btn-grid {
   display: grid;
   gap: 10px;
@@ -121,15 +113,6 @@ body {
 .center {
   display: flex;
   justify-content: center;
-}
-.containercontainer{
-	width: 1010px;
-	height: 530px;
-	max-width: 80%;
-	background-color: white;
-	border-radius: 10px;
-	padding: 10px;
-	position:relative;
 }
 .bottomright{
 	position: absolute;
@@ -269,3 +252,188 @@ body {
   width: 0%;
 }
 
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 536px;
+	  height: 536px;
+	  max-width: 80%;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 1122px;
+		height: 586px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+    
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 408px;
+	  height: 408px;
+	  max-width: 80%;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 866px;
+		height: 458px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+      
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 330px;
+	  height: 280px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 330px;
+		height: 630px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+  
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  /* CSS */
+  	  .container {
+	  display: inline-block;
+	  width: 280px;
+	  height: 280px;
+	  max-width: 80%;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 630px;
+		height: 330px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 136px;
+	  height: 136px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 186px;
+		height: 530px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 5px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 10px;
+	}
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 136px;
+	  height: 136px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 186px;
+		height: 530px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 5px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 10px;
+	}
+  
+  
+}
