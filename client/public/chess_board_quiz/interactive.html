@@ -43,7 +43,7 @@
 	<div class = "containercontainer">
 		<div id="chessboard"></div>
 		<div class="container">
-			<div id="question-container">
+			<div id="question2-container">
 			  <div id="question" class="quest">Question</div>
 			</div>
 			<div id="temp" style = "margin-top:20px">
@@ -70,7 +70,7 @@
         const scoreText = document.getElementById('score');
         const progressBarFull = document.getElementById('progressBarFull');
         const MAX_QUESTIONS = 15;
-        q_counter = 0;
+        var q_counter = 0;
 	var currentR = 1500.0;
 	var puzzleR;
 	var movecount = 0;
@@ -88,8 +88,55 @@
 		animated: true,
 		animationSpeed: 3,
 	};
-	abChess = new AbChess("chessboard",options);
-	abChess.setFEN();
+	var a = [window.matchMedia("(min-width: 1281px)"),window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),window.matchMedia(" (min-width: 768px) and (max-width: 1024px)"),window.matchMedia("(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)"),window.matchMedia("(min-width: 481px) and(max-width: 767px)"),window.matchMedia("(min-width: 320px) and (max-width: 480px))")];
+	function change(e) {
+		if (a[0].matches) { // If media query matches
+			options.width = 468;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+		else if(a[1].matches){
+			options.width = 368;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[2].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[3].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[4].matches){
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+		else{
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+	}	
+	for (var i=0; i<a.length; i++){ // loop through queries
+		change(a[i]); // call handler function explicitly at run time
+		a[i].addListener(change); // call handler function whenever the media query is triggered
+	}
 	var next = document.getElementById("nextQuestion");
 	var resetbutt = document.getElementById("resetButton");
 	next.addEventListener("click",async function(){
@@ -135,6 +182,7 @@
 			ww = data.ww;
 			bw = data.bw;
 			dw = data.dr;
+			puzzleR = data.elo;
 			insert(answer,playans);
 			localStorage.setItem('api',JSON.stringify(data));
 			if((hasNum.test(answer)))
@@ -195,7 +243,7 @@
 		}
 	}
 	function lastMove(){
-		//console.log(abChess.getLastMove());
+		console.log(abChess.getLastMove());
 		return abChess.getLastMove();
 	}
 	function formatwrongans(wrong, arr){
@@ -208,7 +256,8 @@
 	}
 	function nextQues(){
 		if ( q_counter >= MAX_QUESTIONS) {
-        		
+        		q_counter = 0;
+				localStorage.setItem('questioncount',q_counter);
         		return window.location.assign('./../index.html');
     		}
     		
@@ -256,6 +305,7 @@
 		ww = temp.ww;
 		bw = temp.bw;
 		dw = temp.dr;
+		puzzleR = temp.elo;
 		insert(movesplayed,played);
 		if(localStorage.getItem('elo')!= null)
 			currentR = parseFloat(localStorage.getItem('elo'));
@@ -270,7 +320,6 @@
 		else
 			api();
 	}
-	abChess.onMovePlayed(completedQuestion);
 </script>
 </body>
 </html>
