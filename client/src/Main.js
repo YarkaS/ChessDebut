@@ -9,6 +9,7 @@ import Play from "./Play";
 import Dictionary from "./Dictionary"; 
 import Board from "./Board";
 import Trending from "./Trending";
+import About from "./About";
 class Main extends Component {
   render() {
     return (
@@ -21,6 +22,7 @@ class Main extends Component {
             <li><NavLink to="/dictionary">Dictionary</NavLink></li>
             <li><NavLink to="/board">Chess Board</NavLink></li>
             <li><NavLink to="/trending">Trending</NavLink></li>
+            <li><NavLink to="/about">About Us</NavLink></li>
             
           </ul>
           <div className="content">
@@ -28,7 +30,8 @@ class Main extends Component {
             <Route path="/play" component={Play}/>
             <Route path="/Dictionary" component={Dictionary}/>
             <Route path="/Board" component={Board}/> 
-            <Route path="/Trending" component={Trending}/>              
+            <Route path="/Trending" component={Trending}/>    
+            <Route path="/about" component={About}/>            
           </div>
         </div>
       </HashRouter>
