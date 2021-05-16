@@ -188,3 +188,28 @@ ul.header li a {
   align-content: center;
   display: flex;
 }
+/* Dictionary display */
+.ImageDisplayTest{
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+}
+.ImageText{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
+  width: 750px;
+  margin: auto;
+  text-align: center;
+  font-size: 175%;
+}
+h1{
+  text-align: center; 
+}
+h3{
+  text-align: center;
+}
+.bunton{
+  justify-content: center;
+  display: flex;
+  align-content: center;
+}
