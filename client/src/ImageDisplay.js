@@ -34,8 +34,19 @@ function ImageDemo(props) {
     <>
 
        {props?.selected ?
-         <div> this is {selectedValue[0].id} and {selectedValue[0].value} <img src={openings[selectedValue[0].value]}/>
+         <div> 
+           <p className = "ImageText">{selectedValue[0].value}</p> 
+           <Image src={openings[selectedValue[0].value]} />
+           <p className = "ImageText">Move order: {selectedValue[0].moveOrder}</p>
+           <br></br>
+           <p className = "ImageText">{selectedValue[0].description}</p>
          </div>
+        
+         
+           
+         
+         
+         
           : null
 
        }
