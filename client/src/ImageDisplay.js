@@ -4,6 +4,8 @@ import './index.css';
 import { Image } from 'antd';
 import alk from './Imgs/Alekhine.jpeg'
 import amar from './Imgs/Amar.jpeg'
+
+
 // function importAll(r) {
 //   let images = {};
 //   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -15,7 +17,8 @@ import amar from './Imgs/Amar.jpeg'
 // console.log('these are imgg s ', images)
 const openings = {
   "Alekhine's Defense" :alk,
-  "Amar Opening" : amar
+  "Amar Opening" : amar,
+  
 }
 
 function ImageDemo(props) {
