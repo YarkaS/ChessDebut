@@ -20,11 +20,13 @@ const openingsArray = [
     id: 2,
     value: "Amar Opening",
     picture: "./Imgs/Amar.jpeg",
+    description: "A highly unusual opening. White develops the knight on the edge of the board hoping to use it in attack in conjunction to expanding out the center. However, since it is not immediately attacking the center, Black has many responses to this, including e5 which opens up an attack on White's knight. "
   },
   {
     id: 3,
     value: "Benoni Opening",
     picture: <img src={require("./Imgs/Benoni.jpeg").default} />,
+    description: "Black's purpose is to capture the d4 pawn and thereby create a strong queenside pawn majority whose advance can eventually be supported by moving the bishop to g7"
   },
   {
     id: 4,
@@ -41,42 +43,42 @@ const openingsArray = [
     value: "Bishop's Opening",
     picture: <img src="" />,
     moveOrder: "1.e4 e5 2.Nc4",
-    description: "",
+    description: "The whole point of this opening is to develop the bishop to a good square while also keeping the option of moving the f-pawn. However, this doesn't put any immediate pressure on Black and furthermore, the bishop could come under attack if Black decides to move pawn to d5. ",
   },
   {
     id: 6,
     value: "Bogo-Indian Defense",
     picture: <img src="" />,
     moveOrder: "1.d4 Nf6 2.c4e6 3.Nf3 Bb4",
-    description: "",
+    description: "Black tries to develop its kingside quickly and fights for central position indirectly. However, this means White oftens gets and maintains a space advantage. Furthermore, this gives time for White to develop both of its bishops. ",
   },
   {
     id: 7,
     value: "Budapest Gambit",
     picture: <img src="" />,
     moveOrder: "1.d4 Nf6 2.c4e5",
-    description: "",
+    description: "After White gains an extra pawn by capturing Black's e-pawn, a battle for White's extra pawn immediately starts. Black would move its knight to g4 and its other knight to c6, thereby attacking the extra pawn twice. White will attempt to defend it with bishop to f4 and knight to f3. It is rarely played today due to a lower percentage of draws than other lines and also a lower win rate for black in comparison to other lines. However, that is not to say it is a weak opening. Black can get a good pawn structure and possibilities of attacking White's kingside. ",
   },
   {
     id: 8,
     value: "Caro-Kann Defense",
     picture: <img src="" />,
     moveOrder: "1.e4 c6",
-    description: "",
+    description: "A common defense against the king's pawn opening. Much more compact and solid than the Silician or French, however it leads to good endgames for Black due to Black's superior pawn structure. After 2. d4 d5, the most common moves include Nc3, Nd2, exd5 or e5. ",
   },
   {
     id: 9,
     value: "Catalan Opening",
     picture: <img src=""/>,
     moveOrder: "1.d4 Nf6 2.c4 e6 3.g3",
-    description: "",
+    description: "White gains space by moving its pawns to c4 and d4. White eventually will move its bishop to g2, thereby placing pressure on Black's queenside. However the c4 pawn can be weak and White may have to give up a pawn early. ",
   },
   {
     id: 10,
     value: "Center Game",
     picture: <img src=""/>,
     moveOrder: "1.e4 e5 2.d4 exd4",
-    description: "",
+    description: "An extremely old opening which was mostly abandoned in the early 20th century before experiencing a modern day revival. If White moves its pawn to c3, this opening transforms into the Danish Gambit. However, the almost universal continuation of this move is White takes the d4 with its queen and then Black responds with knight to c6. From here, White can retreat the queen to a variety of squares, although the most common is e3. From here, White will aggressively move all the queenside peices and attempt to castle queenside and get the rook into the game.  ",
   },
   {
     id: 11,
