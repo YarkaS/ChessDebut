@@ -146,6 +146,7 @@
 			nextQues();
 			api();
 			document.getElementById("temp2").innerHTML = "Correct"; 
+			q_counter++;
 		}
 		else
 			document.getElementById("temp2").innerHTML = "Wrong";
@@ -225,7 +226,6 @@
 		if(check == 1){
 			//console.log("correct answer");
 			check = 1;
-			q_counter++;
 			localStorage.setItem('questioncount',q_counter);
 			//document.getElementById("temp2").innerHTML = "Correct"; 
 		}
