@@ -508,7 +508,9 @@ ul {
   overflow: hidden;
   background-color: #112124;
 }
-
+h4{ 
+  color: white;
+}
 li {
   float: left;
   font-size: 18px;
@@ -529,9 +531,10 @@ li a:hover {
 .footer2 {
    position: fixed;
    left: 0;
-   bottom: 0;
+   
    width: 100%;
    background-color: #112124;
    color: white;
+   height: 200px;
    text-align: center;
 }
