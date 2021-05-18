@@ -226,22 +226,25 @@ body {
 #hud {
   display: flex;
   justify-content: space-around;
-  background-color: white;
+  background-color: #2B547E;
 }
 
 .hud-prefix {
   text-align: justify;
   font-size: 1.2rem;
-  background-color: white;
+  color: white;
+  background-color: #2B547E;
 }
 
 .hud-main-text {
   text-align: justify;
-  background-color: white;
+  color: white;
+  background-color: #2B547E;
 }
 #progressBar {
   width: 10rem;
   height: 2rem;
+  background-color: #e8ffee;
   border: 0.12rem solid #10822c;
   margin-top: 0.75rem;
 }
@@ -489,4 +492,36 @@ body {
 	  margin: 10px 0;
 	}
   
+}
+
+
+h1, h2, p, ul {
+  font-family: sans-serif;
+
+
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112124;
+}
+
+li {
+  float: left;
+  font-size: 18px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  font-weight:bold;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #2B547E;
 }
