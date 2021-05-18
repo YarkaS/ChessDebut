@@ -533,10 +533,10 @@ li a:hover {
 }
 .footer2 {
    position: fixed;
-
    width: 97%;
+   height: 200px;
    background-color: #112124;
    color: white;
-   height: 50px;
+
    text-align: center;
 }
