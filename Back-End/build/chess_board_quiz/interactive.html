@@ -5,25 +5,45 @@
 	<meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="AbChess/AbChess-0.3.1.css">
 	<link rel="stylesheet" href="test.css">
-   <style media="screen">
-      .page-header {
-        height: 100vh;
-      }
 
-      .page-header .description {
-        color: #ffffff;
-      }
-
-      .header-filter .container {
-        padding-top: 33vh;
-      }
-    </style>
 </head>
 <body>
-
+      <div
+      class="page-header header-filter"
+      style="background-image: url('./background.jpg');"
+    >
 <div >
- 
-        <div id="hud" style = "background-color: white;">
+<ul>
+  <li><a class="active" href="http://chessdebuts.herokuapp.com/#/">Home</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/play"> Short Quiz</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/dictionary"> Dictionary</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/about">About Us</a></li>
+</ul>
+
+
+<div class = "center">
+	<div class = "containercontainer">
+		<div id="chessboard"></div>
+		<div class="container">
+			<div id="question2-container">
+			  <div id="question" class="quest">Question</div>
+			</div>
+			<div id="temp" style = "margin-top:20px">
+				<div id="temp2">
+					**This is only a note** <br>
+					Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>
+					and this text should change.
+				</div>
+			</div>
+		</div>
+		<div class = "bottomright">
+			
+			<button id = "resetButton" class = "commands btn">Reset Question</button>
+			<button id ="nextQuestion" class = "commands btn">Next</button>
+		</div>
+	</div>
+</div>
+        <div id="hud" style = "background-color: #2B547E;">
           <div id="hud-item">
           <p class="hud-prefix">
               ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
@@ -38,29 +58,9 @@
             <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
             <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4> --->
  </div> 
-
-<div class = "center">
-	<div class = "containercontainer">
-		<div id="chessboard"></div>
-		<div class="container">
-			<div id="question-container">
-			  <div id="question" class="quest">Question</div>
-			</div>
-			<div id="temp" style = "margin-top:20px">
-				<div id="temp2">
-					**This is only a note** <br>
-					Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>
-					and this text should change.
-				</div>
-			</div>
-		</div>
-		<div class = "bottomright">
-			<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
-			<button id = "resetButton" class = "commands btn">Reset Question</button>
-			<button id ="nextQuestion" class = "commands btn">Next</button>
-		</div>
-	</div>
-</div>
+          <div class="footer2">
+		<p> Chess Debuts </p>
+          </div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script src='toggle.js'></script>
@@ -70,7 +70,7 @@
         const scoreText = document.getElementById('score');
         const progressBarFull = document.getElementById('progressBarFull');
         const MAX_QUESTIONS = 15;
-        q_counter = 0;
+        var q_counter = 0;
 	var currentR = 1500.0;
 	var puzzleR;
 	var movecount = 0;
@@ -88,8 +88,55 @@
 		animated: true,
 		animationSpeed: 3,
 	};
-	abChess = new AbChess("chessboard",options);
-	abChess.setFEN();
+	var a = [window.matchMedia("(min-width: 1281px)"),window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),window.matchMedia(" (min-width: 768px) and (max-width: 1024px)"),window.matchMedia("(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)"),window.matchMedia("(min-width: 481px) and(max-width: 767px)"),window.matchMedia("(min-width: 320px) and (max-width: 480px))")];
+	function change(e) {
+		if (a[0].matches) { // If media query matches
+			options.width = 468;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+		else if(a[1].matches){
+			options.width = 368;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[2].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[3].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}		
+		else if(a[4].matches){
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+		else{
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+			abChess.onMovePlayed(completedQuestion);
+		}
+	}	
+	for (var i=0; i<a.length; i++){ // loop through queries
+		change(a[i]); // call handler function explicitly at run time
+		a[i].addListener(change); // call handler function whenever the media query is triggered
+	}
 	var next = document.getElementById("nextQuestion");
 	var resetbutt = document.getElementById("resetButton");
 	next.addEventListener("click",async function(){
@@ -99,6 +146,7 @@
 			nextQues();
 			api();
 			document.getElementById("temp2").innerHTML = "Correct"; 
+			q_counter++;
 		}
 		else
 			document.getElementById("temp2").innerHTML = "Wrong";
@@ -135,6 +183,7 @@
 			ww = data.ww;
 			bw = data.bw;
 			dw = data.dr;
+			puzzleR = data.elo;
 			insert(answer,playans);
 			localStorage.setItem('api',JSON.stringify(data));
 			if((hasNum.test(answer)))
@@ -177,7 +226,6 @@
 		if(check == 1){
 			//console.log("correct answer");
 			check = 1;
-			q_counter++;
 			localStorage.setItem('questioncount',q_counter);
 			//document.getElementById("temp2").innerHTML = "Correct"; 
 		}
@@ -195,7 +243,6 @@
 		}
 	}
 	function lastMove(){
-		//console.log(abChess.getLastMove());
 		return abChess.getLastMove();
 	}
 	function formatwrongans(wrong, arr){
@@ -208,7 +255,8 @@
 	}
 	function nextQues(){
 		if ( q_counter >= MAX_QUESTIONS) {
-        		
+        		q_counter = 0;
+				localStorage.setItem('questioncount',q_counter);
         		return window.location.assign('./../index.html');
     		}
     		
@@ -221,7 +269,7 @@
 		played = [];
 		check = 0;
 		movecount = 0;
-		document.getElementById("temp2").innerHTML = "**This is only a note** <br>Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>and this text should change <br> if you need help open up the console and type in answer for the answer."; 
+		document.getElementById("temp2").innerHTML = "**Instructions** <br>Start answering the question by moving the white pieces once you are satified that you answered the question correctly click next <br>and this text should change <br> if you need help open up the console and type in answer for the answer."; 
 	}
 	function prob(rate1, rate2)
 	{
@@ -256,6 +304,7 @@
 		ww = temp.ww;
 		bw = temp.bw;
 		dw = temp.dr;
+		puzzleR = temp.elo;
 		insert(movesplayed,played);
 		if(localStorage.getItem('elo')!= null)
 			currentR = parseFloat(localStorage.getItem('elo'));
@@ -270,7 +319,6 @@
 		else
 			api();
 	}
-	abChess.onMovePlayed(completedQuestion);
 </script>
 </body>
 </html>

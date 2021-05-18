@@ -9,30 +9,26 @@
 </head>
 
 <body class="components-page">
-  <div id="root"></div>
+
+      <div
+      class="page-header header-filter"
+      style="background-image: url('./background.jpg');"
+    >
     
 <div >
 <!---	<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a> 
  --->
-        <div id="hud">
-          <div id="hud-item">
-          <p class="hud-prefix">
-              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
-            <p id="progressText" class="hud-prefix">
-              Question
-            </p>
-			<p id="answerText" class="hud-prefix">
-            </p>
-            <div id="progressBar">
-              <div id="progressBarFull"></div>
-            </div>
-           
-            <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
-            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
-            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
-          </div>
+	
+<ul>
+  <li><a class="active" href="http://chessdebuts.herokuapp.com/#/">Home</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/play"> Short Quiz</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/dictionary"> Dictionary</a></li>
+  <li><a href="http://chessdebuts.herokuapp.com/#/about">About Us</a></li>
+</ul>
+
          
 </div>
+
 
 <div class = "center">
 	<div class = "containercontainer">
@@ -52,7 +48,7 @@
 			</div>
 		</div>
 		<div class = "bottomright">
-			<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a>
+			
 			<button id ="nextQuestion" class = "commands btn">Next</button>
 		</div>
 	</div>
@@ -78,6 +74,26 @@
 
 	</button>
 </div>
+        <div id="hud">
+          <div id="hud-item">
+          <p class="hud-prefix">
+              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
+            <p id="progressText" class="hud-prefix">
+              Question
+            </p>
+			<p id="answerText" class="hud-prefix">
+            </p>
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
+            </div>
+           
+            <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
+            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
+            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
+          </div>
+          <div class="footer2">
+		<p> Chess Debuts </p>
+          </div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script src='toggle.js'></script>
@@ -113,8 +129,49 @@
 		clickable: false,
 		draggable: false
 	};
-	abChess = new AbChess("chessboard",options);
-	abChess.setFEN();
+	var a = [window.matchMedia("(min-width: 1281px)"),window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),window.matchMedia(" (min-width: 768px) and (max-width: 1024px)"),window.matchMedia("(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)"),window.matchMedia("(min-width: 481px) and(max-width: 767px)"),window.matchMedia("(min-width: 320px) and (max-width: 480px))")];
+	function change(e) {
+		if (a[0].matches) { // If media query matches
+			options.width = 468;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}
+		else if(a[1].matches){
+			options.width = 368;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}		
+		else if(a[2].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}		
+		else if(a[3].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}		
+		else if(a[4].matches){
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}
+		else{
+			options.width = 136;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}
+	}	
+	for (var i=0; i<a.length; i++){ // loop through queries
+		change(a[i]); // call handler function explicitly at run time
+		a[i].addListener(change); // call handler function whenever the media query is triggered
+	}
 	var replayButton = document.getElementById("replay");
 	replayButton.addEventListener("click",async function(){
 	played = [];
@@ -146,9 +203,9 @@
 	function toggle(){
 		options.draggable = true;
 		options.clickable = true;
-		document.getElementById("chessboard").remove();
-		document.createElement('div').setAttribute("id","chessboard");
+		document.getElementById("chessboard").innerHTML = "";
 		abChess = new AbChess("chessboard",options);
+		abChess.setFEN();
 	}
 	function insert(word,arr){
 		if(hasNum.test(word)){
@@ -268,7 +325,7 @@
 		//	alert("correct \n"+ "Score: "+count+"\n"+"white win: " + ww + "\n black win: " + bw +"\n draw: "+ dw);
 			
 		  } 
-		  else if(correct == answer||(correct == answersan)){
+		  else if(correct == answer||(correct == answersan) || check == 1){
 			return;
 		  }
 		  else {
@@ -289,6 +346,8 @@
 	}
 	function nextQues(){
 		if ( q_counter >= MAX_QUESTIONS) {
+			q_counter = 0;
+			localStorage.setItem('questioncount',q_counter);
 			return window.location.assign('./../index.html');
 		}	
 		progressText.innerText = `Question ${q_counter}/${MAX_QUESTIONS}`;

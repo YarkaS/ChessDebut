@@ -96,14 +96,6 @@
 .move-span:hover {
     background-color: gainsboro;
 }
-.container {
-  display: inline-block;
-  width: 480px;
-  height: 480px;
-  max-width: 80%;
-  background-color: rgb(255,245,238);
-  padding: 10px;
-}
 .btn-grid {
   display: grid;
   gap: 10px;
@@ -121,15 +113,6 @@ body {
 .center {
   display: flex;
   justify-content: center;
-}
-.containercontainer{
-	width: 1010px;
-	height: 530px;
-	max-width: 80%;
-	background-color: white;
-	border-radius: 10px;
-	padding: 10px;
-	position:relative;
 }
 .bottomright{
 	position: absolute;
@@ -152,6 +135,9 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.btn:hover {
+  background-color: #2B547E;
 }
 .switchbox {
 	position: relative;
@@ -242,23 +228,27 @@ body {
 
 #hud {
   display: flex;
+  font-family: sans-serif;
   justify-content: space-around;
-  background-color: white;
+  background-color: #2B547E;
 }
 
 .hud-prefix {
   text-align: justify;
   font-size: 1.2rem;
-  background-color: white;
+  color: white;
+  background-color: #2B547E;
 }
 
 .hud-main-text {
   text-align: justify;
-  background-color: white;
+  color: white;
+  background-color: #2B547E;
 }
 #progressBar {
   width: 10rem;
   height: 2rem;
+  background-color: #e8ffee;
   border: 0.12rem solid #10822c;
   margin-top: 0.75rem;
 }
@@ -269,3 +259,284 @@ body {
   width: 0%;
 }
 
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 468px;
+	  height: 468px;
+	  max-width: 80%;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 1122px;
+		height: 526px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+    
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 368px;
+	  height: 368px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 806px;
+		height: 418px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+  	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 5px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 11px;
+	}
+	
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+      
+	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 300px;
+	  height: 300px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 320px;
+		height: 650px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 5px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 11px;
+	}
+	#question-container{
+		font-size:10px;
+	}	
+	#question2-container{
+		font-size:10px;
+	}
+	#temp2{
+		font-size:10px;
+	}
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  /* CSS */
+  	  .container {
+	  display: inline-block;
+	  width: 280px;
+	  height: 280px;
+	  max-width: 80%;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 630px;
+		height: 330px;
+		max-width: 80%;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 156px;
+	  height: 136px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 186px;
+		height: 325px;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 2.5px 16px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 3px;
+	}
+	#question-container{
+		font-size:4px;
+	}
+	#question2-container{
+		font-size:8px;
+	}
+	#temp2{
+		font-size:8px;
+	}
+	.btn-grid {
+	  display: grid;
+	  gap: 5px;
+	  margin: 10px 0;
+	}
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  	  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 156px;
+	  height: 136px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 186px;
+		height: 325px;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 2.5px 16px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 3px;
+	}
+	#question-container{
+		font-size:4px;
+	}
+	#question2-container{
+		font-size:8px;
+	}
+	#temp2{
+		font-size:8px;
+	}
+	.btn-grid {
+	  display: grid;
+	  gap: 5px;
+	  margin: 10px 0;
+	}
+  
+}
+
+
+h1, h2, p, ul {
+  font-family: sans-serif;
+
+
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #112124;
+}
+h4{ 
+  color: white;
+}
+li {
+  float: left;
+  font-size: 18px;
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  font-weight:bold;
+  padding: 10px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #2B547E;
+}
+.footer2 {
+   position: fixed;
+
+   width: 96.2%;
+   background-color: #112124;
+   color: white;
+   height: 50px;
+   text-align: center;
+}
