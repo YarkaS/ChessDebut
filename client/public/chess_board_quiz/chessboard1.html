@@ -9,7 +9,11 @@
 </head>
 
 <body class="components-page">
-  <div id="root2"></div>
+
+      <div
+      class="page-header header-filter"
+      style="background-image: url('./background.jpg');"
+    >
     
 <div >
 <!---	<a href = "http://chessdebuts.herokuapp.com/#/" class = "button btn">Home</a> 
@@ -21,25 +25,10 @@
   <li><a href="http://chessdebuts.herokuapp.com/#/dictionary"> Dictionary</a></li>
   <li><a href="http://chessdebuts.herokuapp.com/#/about">About Us</a></li>
 </ul>
-        <div id="hud">
-          <div id="hud-item">
-          <p class="hud-prefix">
-              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
-            <p id="progressText" class="hud-prefix">
-              Question
-            </p>
-			<p id="answerText" class="hud-prefix">
-            </p>
-            <div id="progressBar">
-              <div id="progressBarFull"></div>
-            </div>
-           
-            <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
-            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
-            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
-          </div>
+
          
 </div>
+
 
 <div class = "center">
 	<div class = "containercontainer">
@@ -85,6 +74,26 @@
 
 	</button>
 </div>
+        <div id="hud">
+          <div id="hud-item">
+          <p class="hud-prefix">
+              ELO:  <class="hud-main-text" id="score">   1500  </t> </div>
+            <p id="progressText" class="hud-prefix">
+              Question
+            </p>
+			<p id="answerText" class="hud-prefix">
+            </p>
+            <div id="progressBar">
+              <div id="progressBarFull"></div>
+            </div>
+           
+            <h4>White Win: <class="hud-main-text" id="ww"> ww </h4>
+            <h4>Black Win: <class="hud-main-text" id="bw"> bw </h4>
+            <h4>Draw: <class="hud-main-text" id="dw"> dw  </h4>
+          </div>
+          <div class="footer2">
+		<p> Chess Debuts </p>
+          </div>
 </div>
 <script src='AbChess/AbChess-0.3.1.js'></script>
 <script src='toggle.js'></script>
