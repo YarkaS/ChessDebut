@@ -9,7 +9,7 @@
 }
 
 .header-filter .container {
-  padding-top: 16vh;
+  padding-top: 18vh;
 }
 h1, h2, p, ul {
   font-family: sans-serif;
@@ -18,7 +18,7 @@ h1, h2, p, ul {
 }
 li {
   font-family: sans-serif;
-  font-size: 18px;
+  font-size: 21px;
 }
 ul.header li {
   display: inline;
