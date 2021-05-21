@@ -117,7 +117,7 @@ body {
 .bottomright{
 	position: absolute;
 	bottom: 8px;
-	right: 16px;
+	right: 38px;
 }
 .quest{
 	margin: 0;
@@ -259,26 +259,147 @@ body {
   width: 0%;
 }
 
+
+@media (min-width: 2256px){
+		  /* CSS */
+	  .container {
+	  display: inline-block;
+	  width: 1024px;
+	  height: 1024px;
+	  background-color: rgb(255,245,238);
+	  padding: 10px;
+	}
+	.containercontainer{
+		width: 2118px;
+		height: 1104px;
+		background-color: white;
+		border-radius: 10px;
+		padding: 10px;
+		position:relative;
+	}
+	.btn{
+	  background-color: #25383C; /* Dark Slate Grey */
+	  border: none;
+	  color: white;
+	  padding: 10px 64px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 22px;
+	}
+	#question-container{
+		font-size:40px;
+	}	
+	#question2-container{
+		font-size:40px;
+	}
+	#temp2{
+		font-size:40px;
+	}
+	.switchbox {
+	position: relative;
+	display: inline-block;
+	width: 3.5em;
+	height: 1.1em;
+	padding: .125em;
+	overflow: hidden;
+	box-sizing: content-box;
+	border: 2px solid darkgrey;
+	outline: none;
+	border-radius: .75em;
+	background-color: white;
+	font-size: 1.75em;
+	vertical-align: middle;
+	cursor: pointer;
+	transition: .15s ease-out;
+}
+.switchbox::before {
+	position: relative;
+	z-index: 2;
+	display: block;
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+	background-color: darkgrey;
+	content: '';
+	transition: .15s ease-out;
+}
+.switchbox + label {
+	vertical-align: middle;
+}
+.switchbox-yes,
+.switchbox-no {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	transform: translateY(-50%);
+	font-size: .75em;
+	text-transform: uppercase;
+	pointer-events: none;
+	transition: inherit;
+}
+.switchbox-yes {
+	left: .75em;
+	color: white;
+	font-weight: bold;
+	opacity: 0;
+}
+.switchbox-no {
+	right: .75em;
+	color: darkgrey;
+	opacity: 1;
+}
+.switchbox:hover,
+.switchbox:focus {
+	border-color: var(--theme); /* You probably need to change this! */
+	box-shadow: 0 0 .25em var(--theme); /* You probably need to change this too! */
+}
+.switchbox:hover::before,
+.switchbox:focus::before {
+	background-color: var(--theme); /* You probably need to change this! */
+}
+
+.switchbox.is-pressed {
+	border-color: var(--theme); /* You probably need to change this! */
+	background-color: var(--theme); /* You probably need to change this too! */
+}
+.switchbox.is-pressed .switchbox-yes {
+	opacity: 1;
+}
+.switchbox.is-pressed .switchbox-no {
+	opacity: 0;
+}
+.switchbox.is-pressed::before {
+	transform: translateX(2em);
+	background-color: white;
+}
+.switchbox.is-pressed:hover,
+.switchbox.is-pressed:focus {
+	border-color: rgba(0,0,0,.35);
+}
+.switchbox.is-pressed:hover::before,
+.switchbox.is-pressed:focus::before {
+	background-color: white;
+}
+}
 /* 
   ##Device = Desktops
   ##Screen = 1281px to higher resolution desktops
 */
 
-@media (min-width: 1281px) {
+@media (min-width: 1281px) and (max-width: 2255px) {
   
 	  /* CSS */
 	  .container {
 	  display: inline-block;
 	  width: 468px;
 	  height: 468px;
-	  max-width: 80%;
 	  background-color: rgb(255,245,238);
 	  padding: 10px;
 	}
 	.containercontainer{
-		width: 1122px;
+		width: 1006px;
 		height: 526px;
-		max-width: 80%;
 		background-color: white;
 		border-radius: 10px;
 		padding: 10px;
@@ -306,7 +427,6 @@ body {
 	.containercontainer{
 		width: 806px;
 		height: 418px;
-		max-width: 80%;
 		background-color: white;
 		border-radius: 10px;
 		padding: 10px;
@@ -343,7 +463,6 @@ body {
 	.containercontainer{
 		width: 320px;
 		height: 650px;
-		max-width: 80%;
 		background-color: white;
 		border-radius: 10px;
 		padding: 10px;
@@ -383,14 +502,12 @@ body {
 	  display: inline-block;
 	  width: 280px;
 	  height: 280px;
-	  max-width: 80%;
 	  background-color: rgb(255,245,238);
 	  padding: 10px;
 	}
 	.containercontainer{
 		width: 630px;
 		height: 330px;
-		max-width: 80%;
 		background-color: white;
 		border-radius: 10px;
 		padding: 10px;

@@ -129,22 +129,23 @@
 		clickable: false,
 		draggable: false
 	};
-	var a = [window.matchMedia("(min-width: 1281px)"),window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),window.matchMedia(" (min-width: 768px) and (max-width: 1024px)"),window.matchMedia("(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)"),window.matchMedia("(min-width: 481px) and(max-width: 767px)"),window.matchMedia("(min-width: 320px) and (max-width: 480px))")];
+	var a = [window.matchMedia("(min-width: 2256px)"),window.matchMedia("(min-width: 1281px) and (max-width: 2255px)"),window.matchMedia("(min-width: 1025px) and (max-width: 1280px)"),window.matchMedia(" (min-width: 768px) and (max-width: 1024px)"),window.matchMedia("(min-width: 768px) and (max-width: 1024px) and (orientation: landscape)"),window.matchMedia("(min-width: 481px) and(max-width: 767px)"),window.matchMedia("(min-width: 320px) and (max-width: 480px))")];
 	function change(e) {
 		if (a[0].matches) { // If media query matches
+			options.width = 1024;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}
+
+		else if(a[1].matches){
 			options.width = 468;
 			document.getElementById("chessboard").innerHTML = "";
 			abChess = new AbChess("chessboard",options);
 			abChess.setFEN();
 		}
-		else if(a[1].matches){
-			options.width = 368;
-			document.getElementById("chessboard").innerHTML = "";
-			abChess = new AbChess("chessboard",options);
-			abChess.setFEN();
-		}		
 		else if(a[2].matches){
-			options.width = 280;
+			options.width = 368;
 			document.getElementById("chessboard").innerHTML = "";
 			abChess = new AbChess("chessboard",options);
 			abChess.setFEN();
@@ -156,6 +157,12 @@
 			abChess.setFEN();
 		}		
 		else if(a[4].matches){
+			options.width = 280;
+			document.getElementById("chessboard").innerHTML = "";
+			abChess = new AbChess("chessboard",options);
+			abChess.setFEN();
+		}		
+		else if(a[5].matches){
 			options.width = 136;
 			document.getElementById("chessboard").innerHTML = "";
 			abChess = new AbChess("chessboard",options);
