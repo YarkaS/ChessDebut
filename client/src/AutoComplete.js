@@ -49,8 +49,11 @@ export default class DrawerForm extends React.Component {
           onClose={this.onClose}
           visible={this.state.visible}
           bodyStyle={{ paddingBottom: 80 }}
+          
         >
-          <Form layout="vertical" hideRequiredMark >
+          
+          <Form layout="vertical" hideRequiredMark>
+          
             <Row gutter={16}>
               <AutoComplete
                 style={{
@@ -69,13 +72,19 @@ export default class DrawerForm extends React.Component {
                 }
               />
             </Row>
+            
             <Row gutter={16}>
-              <Col span={12}>
-                <div className = "whiteSpace">
-                </div>
-              </Col>
+            
+              
+              <div className="whiteSpace">
+                <img className="fig" src="https://fanart.tv/fanart/tv/387115/tvposter/the-queens-gambit-6008f682508b4.jpg" />
+              </div>
+              
+              
             </Row>
+            
           </Form>
+          
         </Drawer>
       </>
     );
