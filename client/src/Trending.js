@@ -16,11 +16,7 @@ class Trending extends Component {
 
       
       
-          <TwitterTimelineEmbed
-  sourceType="profile"
-  screenName="FIDE_chess"
-  options={{height: 500, width: 400}}
-/>
+
 
       </h2>
     );
