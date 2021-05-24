@@ -211,21 +211,21 @@ h3{
   /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
   font-family: 'Arial Narrow cursive';
   /*font-style: italic;*/
-  width: 750px;
+  /*width: 750px;*/
   margin: auto;
   text-align: center;
   font-size: 300%;
   font-style: oblique;
 }
 .MoveText{
-  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Arial Narrow cursive';
   margin: auto;
   text-align: center;
-  font-size: 225%;
+  font-size: 22px;
   
 }
 .DescriptionText{
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Arial Narrow cursive';
   margin: auto;
   text-align: center;
   font-size: 25px;

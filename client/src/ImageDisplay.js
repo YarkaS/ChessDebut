@@ -127,13 +127,7 @@ function ImageDemo(props) {
     <>
       {props?.selected ? (
         <div className="OGdiv">
-          <Row>
-            <Col span={12}></Col>
-            <Col span={8}>
-              <p className="ImageText">{selectedValue[0].value}</p>
-            </Col>
-            <Col span={4}></Col>
-          </Row>
+          <Row gutter = {16}></Row>
           <Row gutter = {16}></Row>
           <Row>
             <Col span={4}></Col>
@@ -142,9 +136,12 @@ function ImageDemo(props) {
             </Col>
             <Col span={2}></Col>
             <Col span={8}>
-              <h2>Move order: {selectedValue[0].moveOrder}</h2>
+              <p className="ImageText">{selectedValue[0].value}</p>
               <br></br>
-              <h2>{selectedValue[0].description}</h2>
+              <br></br>
+              <p className="MoveText">Move order: {selectedValue[0].moveOrder}</p>
+              <br></br>
+              <p className="DescriptionText">{selectedValue[0].description}</p>
             </Col>
             <Col span={4}></Col>
           </Row>
