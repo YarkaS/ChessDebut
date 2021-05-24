@@ -62,7 +62,7 @@ export default class DrawerForm extends React.Component {
 
                 /* THIS ARRAY NOW COMES FROM THE DICTIONARY JS FILE */
                 options={this.props.openings}
-                placeholder="try to type `b`"
+                placeholder="select an opening from the list"
                 onChange={this.handleChange}
 
                 filterOption={(inputValue, option) =>
@@ -77,7 +77,7 @@ export default class DrawerForm extends React.Component {
             
               
               <div className="whiteSpace">
-                <img className="fig" src="https://fanart.tv/fanart/tv/387115/tvposter/the-queens-gambit-6008f682508b4.jpg" />
+                <img className="fig" src="client/src/Imgs/BethHarmon.png" alt="Miss Beth" />
               </div>
               
               
