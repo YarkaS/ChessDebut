@@ -1,6 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Container, Row, Col } from "react-bootstrap";
+import {Container} from "react-bootstrap";
+import { Row, Col } from "antd";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Image } from "antd";
@@ -127,25 +128,27 @@ function ImageDemo(props) {
       {props?.selected ? (
         <div className = "OGdiv">
          
-          <Container>
+          
             <Row>
-              <Col><p className="ImageText">{selectedValue[0].value}</p></Col>
+              <Col span = {24}><p className="ImageText">{selectedValue[0].value}</p></Col>
             </Row>
             <Row></Row>
             <Row>
-              <Col>
+              <Col span = {6}></Col>
+              <Col span = {4}>
                 
                 <Image src={openings[selectedValue[0].value]} />
               </Col>
-              <Col>
+              <Col span = {8}>
                 <h1>
                   Move order: {selectedValue[0].moveOrder}
                 </h1>
                 <br></br>
                 <h3>{selectedValue[0].description}</h3>
               </Col>
+              <Col span ={6}></Col>
             </Row>
-          </Container>
+          
         </div>
       ) : null}
     </>
