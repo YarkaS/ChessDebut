@@ -141,7 +141,7 @@ function ImageDemo(props) {
               <br></br>
               <p className="MoveText">Move order: {selectedValue[0].moveOrder}</p>
               <br></br>
-              <p className="DescriptionText">{selectedValue[0].description}</p>
+              <h2>{selectedValue[0].description}</h2>
             </Col>
             <Col span={4}></Col>
           </Row>
