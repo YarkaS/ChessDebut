@@ -77,7 +77,7 @@ export default class DrawerForm extends React.Component {
             
               
               <div className="whiteSpace">
-                <img className="fig" src="client/src/Imgs/BethHarmon.png" alt="Miss Beth" />
+                <img className="fig" src="./Imgs/BethHarmon.png" alt="Miss Beth" />
               </div>
               
               
