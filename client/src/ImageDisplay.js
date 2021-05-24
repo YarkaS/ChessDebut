@@ -2,7 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Container, Row, Col } from "react-bootstrap";
 import "./index.css";
-//import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Image } from "antd";
 import alk from "./Imgs/Alekhine.jpeg";
 import amar from "./Imgs/Amar.jpeg";
