@@ -189,6 +189,12 @@ ul.header li a {
   display: flex;
 }
 /* Dictionary display */
+h1{
+  text-align: center; 
+}
+h3{
+  text-align: center;
+}
 /*.OGdiv{
   background-color: blanchedalmond;
   background-image: url(https://imgix.bustle.com/uploads/image/2020/11/6/6ffce803-34d9-4cf4-b442-0e285f231b4e-tqg_107_unit_01315rc.jpg?w=1200&h=630&q=70&fit=crop&crop=faces&fm=jpg);
@@ -207,28 +213,22 @@ ul.header li a {
   width: 750px;
   margin: auto;
   text-align: center;
-  font-size: 275%;
+  font-size: 300%;
   font-style: oblique;
 }
 .MoveText{
   font-family: 'Times New Roman', Times, serif;
   margin: auto;
   text-align: center;
-  font-size: 125%;
+  font-size: 225%;
   
 }
 .DescriptionText{
   font-family:Arial, Helvetica, sans-serif;
   margin: auto;
   text-align: center;
-  font-size: 150%;
+  font-size: 250%;
   font-style: oblique;
-}
-h1{
-  text-align: center; 
-}
-h3{
-  text-align: center;
 }
 .bunton{
   justify-content: center;
