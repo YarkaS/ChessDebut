@@ -15,6 +15,7 @@ import {
   AutoComplete,
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import Beth from "./Imgs/BethHarmon.png";
 
 
 const { Option } = Select;
@@ -77,7 +78,7 @@ export default class DrawerForm extends React.Component {
             
               
               <div className="whiteSpace">
-                <img className="fig" src="./Imgs/BethHarmon.png" alt="Miss Beth" />
+                <img className="fig" src={Beth} alt="Miss Beth" />
               </div>
               
               
