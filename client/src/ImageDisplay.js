@@ -138,11 +138,11 @@ function ImageDemo(props) {
                 <Image src={openings[selectedValue[0].value]} />
               </Col>
               <Col>
-                <p className="MoveText">
+                <h1>
                   Move order: {selectedValue[0].moveOrder}
-                </p>
+                </h1>
                 <br></br>
-                <p className="DescriptionText">{selectedValue[0].description}</p>
+                <h3>{selectedValue[0].description}</h3>
               </Col>
             </Row>
           </Container>
