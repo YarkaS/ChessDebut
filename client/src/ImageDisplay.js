@@ -131,6 +131,7 @@ function ImageDemo(props) {
             <Row>
               <Col><p className="ImageText">{selectedValue[0].value}</p></Col>
             </Row>
+            <Row></Row>
             <Row>
               <Col>
                 
